@@ -149,7 +149,7 @@ class _SearchPageState extends State<SearchPage> {
                               padding:
                               const EdgeInsets.only(right: 15, left: 15),
                               child: DropdownButton(
-                                hint: const Text("Division"),
+                                hint: const Text("District"),
                                 icon: const Icon(Icons.arrow_drop_down),
                                 iconSize: 30,
                                 isExpanded: true,
@@ -185,7 +185,7 @@ class _SearchPageState extends State<SearchPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 15, left: 15),
                         child: DropdownButton(
-                          hint:  Text("Division"),
+                          hint:  Text("Subdistrict"),
                           icon:  Icon(Icons.arrow_drop_down),
                           iconSize: 30,
                           isExpanded: true,
