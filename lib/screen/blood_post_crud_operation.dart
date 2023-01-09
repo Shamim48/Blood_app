@@ -2,6 +2,7 @@
 import 'package:blood_app/model/blood_post_message.dart';
 import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _Collection = _firestore.collection("blood post request");
@@ -19,11 +20,11 @@ class BloodPostCrud{
      String? reference,
      String? more,
     String? uiImg,
-    String? postUid,
+    String? postUid
   }) async {
     BloodPostResponseMessage bloodPostresponseMessage = BloodPostResponseMessage();
     DocumentReference documentReference = _Collection.doc();
-
+    String? userId= await FirebaseAuth.instance.currentUser!.phoneNumber;
     Map<String, dynamic> data= <String, dynamic>{
       "blood_group" : bloodGroup,
       "patient_problem" : patientProblem,
@@ -35,7 +36,7 @@ class BloodPostCrud{
       "reference": reference,
       "more_details" : more,
       "uIimage": uiImg,
-      "postuid": postUid,
+      "postuid": userId,
       "date": getDate(),
       "time": getTime(),
     };

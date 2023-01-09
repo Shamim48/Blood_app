@@ -2,6 +2,7 @@ import 'package:blood_app/screen/blood_post_crud_operation.dart';
 import 'package:blood_app/screen/blood_post_listpage.dart';
 import 'package:blood_app/utils/color_resources.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 
 class AddBloodPostPage extends StatefulWidget {
@@ -22,6 +23,8 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
   final _moreController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+
 
   // List of items in our dropdown menu
   String? valueChoose;
@@ -313,7 +316,7 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
                 place: _placeController.text,
                 reference: _referanceController.text,
                 relative: _relativenumberController.text,
-              bloodGroup: valueChoose
+                bloodGroup: valueChoose
             );
 
               _bloodController.clear();
@@ -324,22 +327,10 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
               _placeController.clear();
                 _referanceController.clear();
                _relativenumberController.clear();
-            if (response.code != 200){
-              showDialog(
-                  context: context,
-                  builder: (context){
-                    return AlertDialog (
-                      content: Text(response.message.toString()),
-                    );
-                  });
+            if (response.code == 200){
+              EasyLoading.showSuccess("Post request Successful");
             }else {
-              showDialog(
-                  context: context,
-                  builder: (context){
-                    return AlertDialog(
-                      content: Text(response.message.toString()),
-                    );
-                  });
+              EasyLoading.showError( "Post request Failed");
             }
              Navigator.push(context, MaterialPageRoute(builder: (context) => BloodPostListPage(),));
           }
