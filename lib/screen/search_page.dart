@@ -416,7 +416,7 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             Container(
-              height: MediaQuery.of(context).size.height/1.9,
+              height: MediaQuery.of(context).size.height/2.2,
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (BuildContext context, int index ){

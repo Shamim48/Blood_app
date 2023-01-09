@@ -54,7 +54,7 @@ class ColorResources {
   static const Color TEXT_FIELD_BG = Color(0xffD2D2D2);
   static const Color WHITE = Color(0xffFFFFFF);
   static const Color COLOR_GOLD = Color(0xffB89018);
-  static const Color COLOR_PRIMARY = Color(0xff6A82FE);
+  static const Color COLOR_PRIMARY = Color(0xffa30e11);
   static const Color COLOR_BLUE = Color(0xff00ADE3);
   static const Color COLUMBIA_BLUE = Color(0xff00ADE3);
   static const Color LIGHT_SKY_BLUE = Color(0xff8DBFF6);
