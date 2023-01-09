@@ -125,8 +125,6 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            TextButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => BloodPostListPage(),));},
-                child: Text("list page"))
           ],
         ),
       ),
