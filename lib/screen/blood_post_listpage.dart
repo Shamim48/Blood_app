@@ -61,7 +61,7 @@ class _ListPage extends State<BloodPostListPage> {
                                     child: Image.network("https://cdn.pixabay.com/photo/2015/06/22/08/40/child-817373__480.jpg",height:40,width:40,fit: BoxFit.cover,),)
                                 ),
                                 const SizedBox(width: 15,),
-                                const Text("User Name",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
+                                 Text("User Name",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
                               ],
                             ),
                             const SizedBox(height: 20,),
@@ -146,9 +146,9 @@ class _ListPage extends State<BloodPostListPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text(e["date"] ?? "",),
+                                Text(e["date"] ?? "",style: TextStyle(fontSize: 12),),
                                  const SizedBox(width: 15,),
-                                Text(e["time"] ?? "",),
+                                Text(e["time"] ?? "",style: TextStyle(fontSize: 12)),
                               ],
                             ),
 
