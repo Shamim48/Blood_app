@@ -2,6 +2,7 @@
 import 'package:blood_app/screen/add_blood_post_page.dart';
 import 'package:blood_app/screen/blood_post_crud_operation.dart';
 import 'package:blood_app/utils/color_resources.dart';
+import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLuncher;
@@ -77,7 +78,7 @@ class _ListPage extends State<BloodPostListPage> {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const AddBloodPostPage(),));
         },
         backgroundColor: ColorResources.BLOOD_COLOR,
-        child: Icon(Icons.edit),
+        child: const Icon(Icons.edit),
       ),
       body: StreamBuilder(
         stream: collectionReference,
@@ -102,7 +103,8 @@ class _ListPage extends State<BloodPostListPage> {
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                   child: ClipRRect(
-                                    child: Image.network("https://cdn.pixabay.com/photo/2015/06/22/08/40/child-817373__480.jpg",height:40,width:40,fit: BoxFit.cover,),borderRadius: BorderRadius.circular(50),)
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.network("https://cdn.pixabay.com/photo/2015/06/22/08/40/child-817373__480.jpg",height:40,width:40,fit: BoxFit.cover,),)
                                 ),
                                 const SizedBox(width: 15,),
                                 const Text("User Name",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
@@ -146,37 +148,55 @@ class _ListPage extends State<BloodPostListPage> {
                             const SizedBox(height: 20,),
                             Text("More:  " + e["more_details"],style:const TextStyle(fontSize: 16),),
                             const SizedBox(height: 20,),
+                            Center(
+                              child: Container(
+                                height: 70,
+                               decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.circular(30),
 
+                               ),
+                                alignment: Alignment.center,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        IconButton(
+                                            onPressed: (){
+                                              _makePhoneCall(e["relative_mobile"] );
+                                            },
+                                            icon: const Icon(Icons.call,color: Colors.green,),
+                                          iconSize: 30,
+                                        ),
+                                        const Text("Call",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        IconButton(
+                                            onPressed: (){
+                                              _makeSms(e["relative_mobile"]);
+                                            },
+                                            icon:const Icon(Icons.message,color: Colors.amber,),
+                                          iconSize: 30,
+                                        ),
+                                        const Text("Message",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),)
+                                      ],
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 20,),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Column(
-                                  children: [
-                                    IconButton(
-                                        onPressed: (){
-                                          _makePhoneCall(e["relative_mobile"] );
-                                        },
-                                        icon: const Icon(Icons.call,color: Colors.green,),
-                                      iconSize: 30,
-                                    ),
-                                    const Text("Call",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    IconButton(
-                                        onPressed: (){
-                                          _makeSms(e["relative_mobile"]);
-                                        },
-                                        icon:const Icon(Icons.message,color: Colors.amber,),
-                                      iconSize: 30,
-                                    ),
-                                    const Text("Message",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),)
-                                  ],
-                                ),
-
+                                Text(e["date"] ?? "",),
+                                 const SizedBox(width: 15,),
+                                Text(e["time"] ?? "",),
                               ],
-                            )
+                            ),
 
                       ]),
                     ));
