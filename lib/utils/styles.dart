@@ -88,3 +88,41 @@ Container roundedLogo(double weight, double height, double padding, double borde
     child: Image.asset(Images.logo_edu,  ),
   );
 }
+
+
+class Custom_Gridview extends StatelessWidget {
+  final Image image;
+  final String title;
+  Function onTab;
+
+  Custom_Gridview({Key? key, required this.image, required this.title, required this.onTab}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  InkWell(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => onTab()));
+      },
+      child: Column(
+        children: [
+          Container(
+            height: 80,
+            width: 80,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.black)
+            ),
+            padding: const EdgeInsets.all(15),
+            child: image,
+          ),
+          SizedBox(height: 5,),
+          Container(
+              height: 20,
+              child: Text(title, style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500, color:Colors.black87),))
+        ],
+      ),
+    );
+  }
+}
+
+
