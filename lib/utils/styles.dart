@@ -99,7 +99,7 @@ getDate(){
 
 getTime(){
   DateTime now = DateTime.now();
-  String formattedTime = DateFormat('HH:mm').format(now);
+  String formattedTime = DateFormat('hh:mm a').format(now);
   print(formattedTime);
   return  formattedTime;
 }

@@ -1,5 +1,6 @@
 
 import 'package:blood_app/model/blood_post_message.dart';
+import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -34,7 +35,9 @@ class BloodPostCrud{
       "reference": reference,
       "more_details" : more,
       "uIimage": uiImg,
-      "postuid": postUid
+      "postuid": postUid,
+      "date": getDate(),
+      "time": getTime(),
     };
 
     var result = await documentReference.set(data)
@@ -57,7 +60,7 @@ class BloodPostCrud{
 
 
 
-  // Update user here
+/*  // Update user here
   static Future<BloodPostResponseMessage> updateBloodPost ({
     required String? bloodGroup,
     required String? patientProblem,
@@ -96,5 +99,5 @@ class BloodPostCrud{
       responseMessage.message = e;
     });
     return responseMessage;
-  }
+  }*/
 }
