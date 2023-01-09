@@ -69,6 +69,13 @@ class ColorResources {
   static const Color GREEN = Color(0xff23CB60);
   static const Color FLOATING_BTN = Color(0xff7DB6F5);
 
+  static const Color RED_DEEP = Color(0xff7A0209);
+  static const Color RED_DEEP_ONE = Color(0xff7e0202);
+
+  static const Color BLOOD_COLOR = Color(0xffCC1100);
+
+
+
 
 
   static const Color Screen_top_color = Color(0xff6A82FE);

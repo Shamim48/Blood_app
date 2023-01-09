@@ -3,6 +3,7 @@ import 'package:blood_app/utils/color_resources.dart';
 import 'package:blood_app/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'dimensions.dart';
 
 const LatoLight = TextStyle(
@@ -90,6 +91,7 @@ Container roundedLogo(double weight, double height, double padding, double borde
 }
 
 
+
 class Custom_Gridview extends StatelessWidget {
   final Image image;
   final String title;
@@ -126,4 +128,16 @@ class Custom_Gridview extends StatelessWidget {
   }
 }
 
+getDate(){
+  DateTime now = DateTime.now();
+  String formattedDate = DateFormat('MM-dd-yyyy').format(now);
+  print(formattedDate);
+  return  formattedDate;
+}
 
+getTime(){
+  DateTime now = DateTime.now();
+  String formattedTime = DateFormat('hh:mm a').format(now);
+  print(formattedTime);
+  return  formattedTime;
+}

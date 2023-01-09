@@ -1,9 +1,11 @@
 import 'package:blood_app/main.dart';
+import 'package:blood_app/screen/signup.dart';
 import 'package:blood_app/utils/color_resources.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:intl/intl.dart';
 
 class LogingPage extends StatefulWidget {
   const LogingPage({Key? key}) : super(key: key);
@@ -26,6 +28,7 @@ class _LogingPageState extends State<LogingPage> {
   late DatabaseReference db;
 
   String smsCode="";
+
 
   var _credential;
 
@@ -54,113 +57,99 @@ class _LogingPageState extends State<LogingPage> {
     return Scaffold(
       body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50, left: 20, right: 20,),
-            child: Container(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
+          Column(
+            children: [
+              SizedBox(height: 150,),
+              Text("Welecome", style: TextStyle(fontWeight: FontWeight.bold,fontSize:50, )),
+              Text("FCI BLOOD BANCK", style: TextStyle(fontWeight: FontWeight.bold,fontSize:30, )),
+              Form(
+                key: _ScaffoldKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Bl", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
-                    Text("o", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: ColorResources.COLOR_PRIMARY),),
-                    Text("od-FCI", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
+                    Padding(
+                      padding: EdgeInsets.only(top: 100, left: 35, right: 35,),
+                      child: Container(
+                        height: 50,
+                        child: TextFormField(
+                          keyboardType: TextInputType.phone,
+                          controller: phoneController,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return "Please Enter a Phone Number";
+                            }else if(!RegExp(r'^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$').hasMatch(value)){
+                              return "Please Enter a Valid Phone Number";
+                            }
+                            else if(value.length > 11){
+                              return "Mobile Number must be of 11 digit";
+                            }
+                          },
+                          decoration: InputDecoration(
+                            labelText: "Phone Number",
+                            labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(35),
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(35),
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
+                            suffixIcon: Icon(Icons.phone, color: Colors.grey[700],),
+                          ),
+                        ),
+                      ),
+                    ),
+
+
+                    SizedBox(height: 20,),
+                    Padding(
+                      padding: EdgeInsets.only(top: 40, left: 35, right: 35,),
+                      child: InkWell(
+                        onTap: () async {
+                          String number=phoneController.text.trim() ?? "";
+                          if(number==""){
+                            EasyLoading.showError("Please Enter your phone number");
+                            return;
+                          }
+                          EasyLoading.show(status: "Code Sending");
+                          registerUser("+88$number", context );
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(35),
+                              color: Colors.deepPurple
+                          ),
+                          child: Text("Continue",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),),
+                        ),
+                      ),
+                    ),
+
+                    /*Container(
+                        height: 60,
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
+                          children: [
+                            Text("Don't have any account?", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),),
+                            TextButton(
+                                onPressed: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                                },
+                                child: Text("Sing Up", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorResource.COLOR_PRIMARY),))
+                          ],
+                        )
+                    ),*/
                   ],
-                )
-            ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.only(top: 100, left: 20, right: 20,),
-            child: Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                children: [
-                  Text("Welcome ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
-                  Row(
-                    children: [
-                      Text("Bl", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                      Text("o", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: ColorResources.COLOR_PRIMARY),),
-                      Text("od-FCI", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                    ],
-                  ),
-                  Text(" Donation!", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
-                ],
+                ),
               ),
-            ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
-            child: Form(
-              key: _ScaffoldKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    keyboardType: TextInputType.phone,
-                    controller: phoneController,
-                    decoration: InputDecoration(
-                      labelText: "Phone Number",
-                      labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,fontSize: 16),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: ColorResources.COLOR_PRIMARY,
-                          )
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: ColorResources.COLOR_PRIMARY),
-                      ),
-                      suffixIcon: Icon(Icons.phone, color: ColorResources.COLOR_PRIMARY,),
-                    ),
-                  ),
-
-
-                  SizedBox(height: 40,),
-                  InkWell(
-                    onTap: () async {
-                      String number=phoneController.text.trim() ?? "";
-                      if(number==""){
-                        EasyLoading.showError("Please Enter your phone number");
-                        return;
-                      }
-                      EasyLoading.show(status: "Code Sending");
-                      registerUser("+88$number", context );
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.deepPurple
-                      ),
-                      child: Text("Continue",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),),
-                    ),
-                  ),
-
-                  /*Container(
-                      height: 60,
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        children: [
-                          Text("Don't have any account?", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),),
-                          TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-                              },
-                              child: Text("Sing Up", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorResource.COLOR_PRIMARY),))
-                        ],
-                      )
-                  ),*/
-                ],
-              ),
-            ),
+            ],
           ),
         ],
       ),
@@ -182,7 +171,7 @@ class _LogingPageState extends State<LogingPage> {
               "phone": mobile
             });*/
             EasyLoading.dismiss();
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => MyHomePage(title: 'Blood Manager',)), (route) => false);
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => SignUp(phoneNumber: "+88${phoneController.text}")), (route) => false);
           }).catchError((e){
             print(e);
           });
@@ -230,7 +219,7 @@ class _LogingPageState extends State<LogingPage> {
                           /*var ref=db.child("User").child(mobile).set({
                             "phone": mobile
                           });*/
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => MyHomePage(title: 'Blood Manager',)), (route) => false);
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => SignUp(phoneNumber: "+88${phoneController.text}")), (route) => false);
                         });
                       },
                     ),

@@ -1,0 +1,171 @@
+
+import 'package:blood_app/screen/add_blood_post_page.dart';
+import 'package:blood_app/screen/blood_post_crud_operation.dart';
+import 'package:blood_app/utils/color_resources.dart';
+import 'package:blood_app/utils/styles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+
+
+class BloodPostListPage extends StatefulWidget {
+  const BloodPostListPage({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _ListPage();
+  }
+}
+
+var _scaffoldKey = GlobalKey<ScaffoldState>();
+class _ListPage extends State<BloodPostListPage> {
+  final Stream<QuerySnapshot> collectionReference = BloodPostCrud.readBloodPostRequest();
+  //FirebaseFirestore.instance.collection('Employee').snapshots();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddBloodPostPage(),));
+        },
+        backgroundColor: ColorResources.BLOOD_COLOR,
+        child: const Icon(Icons.edit),
+      ),
+      body: StreamBuilder(
+        stream: collectionReference,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData) {
+            return ListView(
+              children: snapshot.data!.docs.map((e) {
+                return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    color: ColorResources.BLOOD_COLOR,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.network("https://cdn.pixabay.com/photo/2015/06/22/08/40/child-817373__480.jpg",height:40,width:40,fit: BoxFit.cover,),)
+                                ),
+                                const SizedBox(width: 15,),
+                                 Text("User Name",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
+                              ],
+                            ),
+                            const SizedBox(height: 20,),
+                            RichText(
+                                text:  TextSpan(
+                                  text:"Blood group:  ",style: const TextStyle(fontSize: 16,color: Colors.black),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: e["blood_group"],style: const TextStyle(fontSize: 16,color: ColorResources.BLOOD_COLOR,fontWeight: FontWeight.bold),
+                                    )
+                                  ]
+                                )
+                            ),
+                            //Text("রক্তের গ্রুপ: " + e["blood_group"],style: const TextStyle(fontSize: 16),),
+                            const SizedBox(height: 20,),
+                            Text("Patient problem:  " + e["patient_problem"],style:const TextStyle(fontSize: 16),),
+                            const SizedBox(height: 20,),
+                            Text("Blood amount:  " + e["blood_quantity"],style:const TextStyle(fontSize: 16),),
+                            const SizedBox(height: 20,),
+                            Text("Date & Time:  " + e["date_time"],style:const TextStyle(fontSize: 16),),
+                            const SizedBox(height: 20,),
+                            Text("Blood donation Place:  " + e["place_where"],style:const TextStyle(fontSize: 16),),
+                            const SizedBox(height: 20,),
+                            RichText(
+                                text:  TextSpan(
+                                    text:"Patient relative number:  ",style: const TextStyle(fontSize: 16,color: Colors.black),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: e["relative_mobile"],style: const TextStyle(fontSize: 16,color: Colors.black,fontWeight: FontWeight.bold),
+                                      )
+                                    ]
+                                )
+                            ),
+                            const SizedBox(height: 20,),
+                            Text("Hemoglobin:  " + e["hemoglobin"],style:const TextStyle(fontSize: 16),),
+                            const SizedBox(height: 20,),
+                            Text("Reference:  " + e["reference"],style:const TextStyle(fontSize: 16),),
+                            const SizedBox(height: 20,),
+                            Text("More:  " + e["more_details"],style:const TextStyle(fontSize: 16),),
+                            const SizedBox(height: 20,),
+                            Center(
+                              child: Container(
+                                height: 70,
+                               decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.circular(30),
+
+                               ),
+                                alignment: Alignment.center,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        IconButton(
+                                            onPressed: (){
+
+                                            },
+                                            icon: const Icon(Icons.call,color: Colors.green,),
+                                          iconSize: 30,
+                                        ),
+                                        const Text("Call",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        IconButton(
+                                            onPressed: (){
+
+                                            },
+                                            icon:const Icon(Icons.message,color: Colors.amber,),
+                                          iconSize: 30,
+                                        ),
+                                        const Text("Message",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),)
+                                      ],
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 20,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(e["date"] ?? "",style: TextStyle(fontSize: 12),),
+                                 const SizedBox(width: 15,),
+                                Text(e["time"] ?? "",style: TextStyle(fontSize: 12)),
+                              ],
+                            ),
+
+                      ]),
+                    ));
+              }).toList(),
+            );
+          }
+          return Container();
+        },
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
