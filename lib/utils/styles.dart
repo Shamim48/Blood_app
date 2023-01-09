@@ -127,3 +127,16 @@ class Custom_Gridview extends StatelessWidget {
   }
 }
 
+getDate(){
+  DateTime now = DateTime.now();
+  String formattedDate = DateFormat('MM-dd-yyyy').format(now);
+  print(formattedDate);
+  return  formattedDate;
+}
+
+getTime(){
+  DateTime now = DateTime.now();
+  String formattedTime = DateFormat('hh:mm a').format(now);
+  print(formattedTime);
+  return  formattedTime;
+}
