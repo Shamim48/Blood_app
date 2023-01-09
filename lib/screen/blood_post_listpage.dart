@@ -5,7 +5,6 @@ import 'package:blood_app/utils/color_resources.dart';
 import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLuncher;
 
 
 
@@ -61,7 +60,7 @@ class _ListPage extends State<BloodPostListPage> {
                                     child: Image.network("https://cdn.pixabay.com/photo/2015/06/22/08/40/child-817373__480.jpg",height:40,width:40,fit: BoxFit.cover,),)
                                 ),
                                 const SizedBox(width: 15,),
-                                const Text("User Name",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
+                                 Text("User Name",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
                               ],
                             ),
                             const SizedBox(height: 20,),
@@ -117,7 +116,7 @@ class _ListPage extends State<BloodPostListPage> {
                                       children: [
                                         IconButton(
                                             onPressed: (){
-                                              _makePhoneCall(e["relative_mobile"] );
+
                                             },
                                             icon: const Icon(Icons.call,color: Colors.green,),
                                           iconSize: 30,
@@ -129,7 +128,7 @@ class _ListPage extends State<BloodPostListPage> {
                                       children: [
                                         IconButton(
                                             onPressed: (){
-                                              _makeSms(e["relative_mobile"]);
+
                                             },
                                             icon:const Icon(Icons.message,color: Colors.amber,),
                                           iconSize: 30,
@@ -146,9 +145,9 @@ class _ListPage extends State<BloodPostListPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text(e["date"] ?? "",),
+                                Text(e["date"] ?? "",style: TextStyle(fontSize: 12),),
                                  const SizedBox(width: 15,),
-                                Text(e["time"] ?? "",),
+                                Text(e["time"] ?? "",style: TextStyle(fontSize: 12)),
                               ],
                             ),
 
@@ -165,21 +164,7 @@ class _ListPage extends State<BloodPostListPage> {
 }
 
 
-Future<void> _makePhoneCall(String phoneNumber) async {
-  final Uri laungchUri = Uri(
-    scheme: 'tel',
-    path: "+88$phoneNumber",
-  );
-  await UrlLuncher.launchUrl(laungchUri);
-}
 
-Future<void> _makeSms(String phoneNumber) async {
-  final Uri laungchUri = Uri(
-    scheme: 'sms',
-    path: "+88$phoneNumber",
-  );
-  await UrlLuncher.launchUrl(laungchUri);
-}
 
 
 

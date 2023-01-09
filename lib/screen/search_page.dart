@@ -41,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
         key: _scaffoldkey,
 
         backgroundColor: Colors.white,
-        body: Column(
+        body: ListView(
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
@@ -149,7 +149,7 @@ class _SearchPageState extends State<SearchPage> {
                               padding:
                               const EdgeInsets.only(right: 15, left: 15),
                               child: DropdownButton(
-                                hint: const Text("Division"),
+                                hint: const Text("District"),
                                 icon: const Icon(Icons.arrow_drop_down),
                                 iconSize: 30,
                                 isExpanded: true,
@@ -185,7 +185,7 @@ class _SearchPageState extends State<SearchPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 15, left: 15),
                         child: DropdownButton(
-                          hint:  Text("Division"),
+                          hint:  Text("Subdistrict"),
                           icon:  Icon(Icons.arrow_drop_down),
                           iconSize: 30,
                           isExpanded: true,
@@ -210,213 +210,216 @@ class _SearchPageState extends State<SearchPage> {
                       )),
                   Padding(
                     padding:  EdgeInsets.all(20),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                bloodGroup="A+";
-                                setState(() {
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  bloodGroup="A+";
+                                  setState(() {
 
-                                });
-                              },
-                              child: Container(
-                                  height: 35,
-                                  width: 85,
-                                  decoration:  BoxDecoration(
-                                    border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
-                                    color: bloodGroup=="A+" ? ColorResources.COLOR_PRIMARY: Colors.white,
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-
-                                  ),
-                                  child: Center(
-                                      child: Text(
-                                        "A+",
-                                        style: TextStyle(
-                                            fontSize: 18, color: bloodGroup=="A+" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
-                                      ))),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                bloodGroup="AB+";
-                                setState(() {
-
-                                });
-                              },
-                              child: Container(
-                                  height: 35,
-                                  width: 85,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
-                                    color: bloodGroup=="AB+" ? ColorResources.COLOR_PRIMARY: Colors.white,
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                  ),
-                                  child:  Center(
-                                      child: Text(
-                                        "AB+",
-                                        style: TextStyle(
-                                            fontSize: 18, color: bloodGroup=="AB+" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
-                                      ))),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                bloodGroup="O+";
-                                setState(() {
-
-                                });
-                              },
-                              child: Container(
-                                  height: 35,
-                                  width: 85,
-                                  decoration:  BoxDecoration(
+                                  });
+                                },
+                                child: Container(
+                                    height: 35,
+                                    width: 85,
+                                    decoration:  BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
-                                      color: bloodGroup=="O+" ? ColorResources.COLOR_PRIMARY: Colors.white,
+                                      color: bloodGroup=="A+" ? ColorResources.COLOR_PRIMARY: Colors.white,
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                                  child:  Center(
-                                      child: Text(
-                                        "O+",
-                                        style: TextStyle(
-                                            fontSize: 18, color: bloodGroup == "O+" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
-                                      ))),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                bloodGroup="B+";
-                                setState(() {
+                                      BorderRadius.all(Radius.circular(5)),
 
-                                });
-                              },
-                              child: Container(
-                                  height: 35,
-                                  width: 85,
-                                  decoration: BoxDecoration(
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                          "A+",
+                                          style: TextStyle(
+                                              fontSize: 18, color: bloodGroup=="A+" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
+                                        ))),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  bloodGroup="AB+";
+                                  setState(() {
+
+                                  });
+                                },
+                                child: Container(
+                                    height: 35,
+                                    width: 85,
+                                    decoration: BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
-                                      color: bloodGroup=="B+" ? ColorResources.COLOR_PRIMARY: Colors.white,
+                                      color: bloodGroup=="AB+" ? ColorResources.COLOR_PRIMARY: Colors.white,
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                                  child:  Center(
-                                      child: Text(
-                                        "B+",
-                                        style: TextStyle(
-                                            fontSize: 18, color: bloodGroup == "B+" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
-                                      ))),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                bloodGroup="AB-";
-                                setState(() {
+                                      BorderRadius.all(Radius.circular(5)),
+                                    ),
+                                    child:  Center(
+                                        child: Text(
+                                          "AB+",
+                                          style: TextStyle(
+                                              fontSize: 18, color: bloodGroup=="AB+" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
+                                        ))),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  bloodGroup="O+";
+                                  setState(() {
 
-                                });
-                              },
-                              child: Container(
-                                  height: 35,
-                                  width: 85,
-                                  decoration:  BoxDecoration(
+                                  });
+                                },
+                                child: Container(
+                                    height: 35,
+                                    width: 85,
+                                    decoration:  BoxDecoration(
+                                        border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
+                                        color: bloodGroup=="O+" ? ColorResources.COLOR_PRIMARY: Colors.white,
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                    child:  Center(
+                                        child: Text(
+                                          "O+",
+                                          style: TextStyle(
+                                              fontSize: 18, color: bloodGroup == "O+" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
+                                        ))),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  bloodGroup="B+";
+                                  setState(() {
+
+                                  });
+                                },
+                                child: Container(
+                                    height: 35,
+                                    width: 85,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
+                                        color: bloodGroup=="B+" ? ColorResources.COLOR_PRIMARY: Colors.white,
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                    child:  Center(
+                                        child: Text(
+                                          "B+",
+                                          style: TextStyle(
+                                              fontSize: 18, color: bloodGroup == "B+" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
+                                        ))),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  bloodGroup="AB-";
+                                  setState(() {
+
+                                  });
+                                },
+                                child: Container(
+                                    height: 35,
+                                    width: 85,
+                                    decoration:  BoxDecoration(
+                                        border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
+                                        color: bloodGroup=="AB-" ? ColorResources.COLOR_PRIMARY: Colors.white,
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                    child:  Center(
+                                        child: Text(
+                                          "AB-",
+                                          style: TextStyle(
+                                              fontSize: 18, color: bloodGroup == "AB-" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
+                                        ))),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  bloodGroup="O-";
+                                  setState(() {
+
+                                  });
+                                },
+                                child: Container(
+                                    height: 35,
+                                    width: 85,
+                                    decoration:  BoxDecoration(
+                                        border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
+                                        color: bloodGroup=="O-" ? ColorResources.COLOR_PRIMARY: Colors.white,
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                    child:  Center(
+                                        child: Text(
+                                          "O-",
+                                          style: TextStyle(
+                                              fontSize: 18, color: bloodGroup == "O-" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
+                                        ))),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  bloodGroup="A-";
+                                  setState(() {
+
+                                  });
+                                },
+                                child: Container(
+                                    height: 35,
+                                    width: 85,
+                                    decoration:  BoxDecoration(
+                                        border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
+                                        color: bloodGroup=="A-" ? ColorResources.COLOR_PRIMARY: Colors.white,
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                    child:  Center(
+                                        child: Text(
+                                          "A-",
+                                          style: TextStyle(
+                                              fontSize: 18, color: bloodGroup == "A-" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
+                                        ))),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  bloodGroup="B-";
+                                  setState(() {
+
+                                  });
+                                },
+                                child: Container(
+                                    height: 35,
+                                    width: 85,
+                                    decoration:  BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
-                                      color: bloodGroup=="AB-" ? ColorResources.COLOR_PRIMARY: Colors.white,
+                                      color: bloodGroup=="B-" ? ColorResources.COLOR_PRIMARY: Colors.white,
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                                  child:  Center(
-                                      child: Text(
-                                        "AB-",
-                                        style: TextStyle(
-                                            fontSize: 18, color: bloodGroup == "AB-" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
-                                      ))),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                bloodGroup="O-";
-                                setState(() {
-
-                                });
-                              },
-                              child: Container(
-                                  height: 35,
-                                  width: 85,
-                                  decoration:  BoxDecoration(
-                                      border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
-                                      color: bloodGroup=="O-" ? ColorResources.COLOR_PRIMARY: Colors.white,
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                                  child:  Center(
-                                      child: Text(
-                                        "O-",
-                                        style: TextStyle(
-                                            fontSize: 18, color: bloodGroup == "O-" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
-                                      ))),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                bloodGroup="A-";
-                                setState(() {
-
-                                });
-                              },
-                              child: Container(
-                                  height: 35,
-                                  width: 85,
-                                  decoration:  BoxDecoration(
-                                      border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
-                                      color: bloodGroup=="A-" ? ColorResources.COLOR_PRIMARY: Colors.white,
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                                  child:  Center(
-                                      child: Text(
-                                        "A-",
-                                        style: TextStyle(
-                                            fontSize: 18, color: bloodGroup == "A-" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
-                                      ))),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                bloodGroup="B-";
-                                setState(() {
-
-                                });
-                              },
-                              child: Container(
-                                  height: 35,
-                                  width: 85,
-                                  decoration:  BoxDecoration(
-                                    border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
-                                    color: bloodGroup=="B-" ? ColorResources.COLOR_PRIMARY: Colors.white,
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                  ),
-                                  child:  Center(
-                                      child: Text(
-                                        "B-",
-                                        style: TextStyle(
-                                            fontSize: 18, color: bloodGroup == "B-" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
-                                      ))),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 20,),
-                        Container(
-                            alignment: Alignment.bottomLeft,
-                            child: Text("Blood Donor List",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,),))
-                      ],
+                                      BorderRadius.all(Radius.circular(5)),
+                                    ),
+                                    child:  Center(
+                                        child: Text(
+                                          "B-",
+                                          style: TextStyle(
+                                              fontSize: 18, color: bloodGroup == "B-" ? Colors.white: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.bold),
+                                        ))),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 20,),
+                          Container(
+                              alignment: Alignment.bottomLeft,
+                              child: Text("Blood Donor List",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,),))
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
             Container(
-              height: MediaQuery.of(context).size.height/1.9,
+              height: MediaQuery.of(context).size.height/2.2,
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (BuildContext context, int index ){
@@ -467,7 +470,7 @@ class _SearchPageState extends State<SearchPage> {
                                           ],
                                         ),
                                         // SizedBox(height: 5,),
-                                        Text("Location : Flugazi, Feni", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], fontSize: 14),),
+                                        Text("Location : Feni", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], fontSize: 14),),
                                       ],
                                     ),
 

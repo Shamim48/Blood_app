@@ -183,9 +183,9 @@ class _HomePageState extends State<HomePage> {
                         mainAxisSpacing:30,
                         children:[
                           Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Blood Search", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Group Added", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Blood Request", onTab: () => SearchPage()),
                           Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Blood Supply", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => SearchPage()),
                           Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Communication", onTab: () => SearchPage()),
                           Custom_Gridview(image: Image.asset("assets/images/info.png"), title: "Info", onTab: () => SearchPage()),
                         ],
