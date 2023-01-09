@@ -118,6 +118,7 @@ class Custom_Gridview extends StatelessWidget {
           SizedBox(height: 5,),
           Container(
               height: 20,
+
               child: Text(title, style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500, color:Colors.black87),))
         ],
       ),
