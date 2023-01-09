@@ -142,13 +142,15 @@ class _pofileState extends State<pofile> {
               title: Text("Email",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
               subtitle: Text(donnerDoc[DonnerModel.EMAIL],style: TextStyle(fontSize: 16)),
             ),
-            ListTile(
+
+           /* ListTile(
               leading: Icon(
                 Icons.place_outlined,
               ),
               title: Text("Address",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
               subtitle: Text(donnerDoc[DonnerModel.ADDRESS],style: TextStyle(fontSize: 16)),
-            ),ListTile(
+            ),*/
+            ListTile(
               leading: Icon(
                 Icons.date_range_outlined,
               ),
