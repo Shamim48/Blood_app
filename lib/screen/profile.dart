@@ -61,7 +61,7 @@ class _pofileState extends State<pofile> {
                             border: Border.all(color: Colors.white,width: 3,),
                             color: Colors.black,
                             image: DecorationImage(
-                              image: NetworkImage( donnerDoc[DonnerModel.IMAGEID],),
+                              image: NetworkImage( donnerDoc[DonnerModel.IMAGE_ID],),
                               fit: BoxFit.cover,
                             )
                         ),
