@@ -1,6 +1,8 @@
 
 import 'dart:io';
 import 'package:blood_app/main.dart';
+import 'package:blood_app/screen/home_paage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +31,8 @@ class _SignUpState extends State<SignUp> {
   File? file;
   final ImagePicker picker = ImagePicker();
   firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
+
+ late DocumentSnapshot donnerDoc;
 
 
 
@@ -65,13 +69,16 @@ class _SignUpState extends State<SignUp> {
       await ref.putFile(file!).snapshotEvents.listen((event) {
         switch(event.state)  {
           case TaskState.running:
-            // running
+            EasyLoading.show(status: "Your Image Uploading...");
             break;
           case TaskState.success:
+            EasyLoading.dismiss();
             registerDonner(ref);
             break;
           case TaskState.canceled:
+            EasyLoading.dismiss();
           EasyLoading.showError("Image Upload Failed");
+
             break;
 
         }
@@ -106,11 +113,22 @@ class _SignUpState extends State<SignUp> {
   String? UpazilasChoise;
   String? unionChoise;
 
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    phoneController.text=widget.phoneNumber;
+    singleDonner();
+  }
+
+  singleDonner()async{
+      donnerDoc= await  AuthCrud.readCurrentUser(id: widget.phoneNumber);
+      if(donnerDoc.exists){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+      }else{
+        phoneController.text=widget.phoneNumber;
+      }
   }
 
   List GenderItem = [
@@ -269,7 +287,7 @@ class _SignUpState extends State<SignUp> {
     );
     final date = InkWell(
       onTap: () async {
-        DateTime? dateTime = await getDate(context);
+        DateTime? dateTime = await getDateFromCalendar(context);
         String? day;
         String? month;
         String? year;
@@ -403,7 +421,7 @@ class _SignUpState extends State<SignUp> {
     );
     final lastdates = InkWell(
       onTap: () async {
-        DateTime? dateTime = await getDate(context);
+        DateTime? dateTime = await getDateFromCalendar(context);
         String? day;
         String? month;
         String? year;
@@ -798,7 +816,7 @@ class _SignUpState extends State<SignUp> {
                 content: Text(response.message.toString()),
               );
             });*/
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage(title: 'Blood App',)), (route) => false);
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()), (route) => false);
       }
       else{
         EasyLoading.showError("Donner Registration Failed");
@@ -819,7 +837,7 @@ class _SignUpState extends State<SignUp> {
 }
 
 //Date Time
-Future<DateTime?> getDate(BuildContext context) async {
+Future<DateTime?> getDateFromCalendar(BuildContext context) async {
   return showDatePicker(
     context: context,
     initialDate: DateTime.now(),

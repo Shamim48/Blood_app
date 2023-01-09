@@ -77,6 +77,12 @@ class AuthCrud {
     return notesItemCollection.snapshots();
   }
 
+  static Future<DocumentSnapshot> readCurrentUser({required String? id})async {
+    CollectionReference notesItemCollection = _signupCollectionReference;
+    DocumentReference documentReferencer = _signupCollectionReference.doc(id);
+    DocumentSnapshot documentSnapshot=await documentReferencer.get();
+    return documentSnapshot;
+  }
 
   // static Future<DocumentSnapshot> SingUp_SingleRead({required String id})async {
   //   CollectionReference notesItemCollection = _signupCollectionReference;
