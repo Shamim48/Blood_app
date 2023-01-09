@@ -1,4 +1,5 @@
 import 'package:blood_app/main.dart';
+import 'package:blood_app/screen/signup.dart';
 import 'package:blood_app/utils/color_resources.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -27,8 +28,6 @@ class _LogingPageState extends State<LogingPage> {
   late DatabaseReference db;
 
   String smsCode="";
-
-  String userid=FirebaseAuth.instance.currentUser!.uid;
 
 
   var _credential;
@@ -172,7 +171,7 @@ class _LogingPageState extends State<LogingPage> {
               "phone": mobile
             });*/
             EasyLoading.dismiss();
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => MyHomePage(title: 'Blood Manager',)), (route) => false);
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => SignUp(phoneNumber: "+88${phoneController.text}")), (route) => false);
           }).catchError((e){
             print(e);
           });
@@ -220,7 +219,7 @@ class _LogingPageState extends State<LogingPage> {
                           /*var ref=db.child("User").child(mobile).set({
                             "phone": mobile
                           });*/
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => MyHomePage(title: 'Blood Manager',)), (route) => false);
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => SignUp(phoneNumber: "+88${phoneController.text}")), (route) => false);
                         });
                       },
                     ),
