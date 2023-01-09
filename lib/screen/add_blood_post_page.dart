@@ -1,6 +1,6 @@
-import 'package:fire_base/blood_post/blood_post_listpage.dart';
-import 'package:fire_base/blood_post/blood_post_crud_operation.dart';
-import 'package:fire_base/utils/color_resources.dart';
+import 'package:blood_app/screen/blood_post_crud_operation.dart';
+import 'package:blood_app/screen/blood_post_listpage.dart';
+import 'package:blood_app/utils/color_resources.dart';
 import 'package:flutter/material.dart';
 
 
@@ -114,7 +114,7 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
           return "This field is required";
         }
       },
-      decoration: const InputDecoration(
+      decoration:  const InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide(
                 width: 1,
@@ -145,7 +145,7 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
           return "This field is required";
         }
       },
-      decoration: const InputDecoration(
+      decoration:  const InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide(
                 width: 1,
@@ -175,7 +175,7 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
           return "This field is required";
         }
       },
-      decoration: const InputDecoration(
+      decoration:  const InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide(
                 width: 1,
@@ -380,7 +380,7 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
                                    decoration: const BoxDecoration(
                                        borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
                                        image: DecorationImage(
-                                           image: AssetImage("assets/image/background.png"),fit: BoxFit.cover
+                                           image: AssetImage("assets/images/postbackgorund.png"),fit: BoxFit.cover
                                        )
                                    ),
                                    alignment: Alignment.center,

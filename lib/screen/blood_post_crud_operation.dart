@@ -1,22 +1,24 @@
 
+import 'package:blood_app/model/blood_post_message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fire_base/blood_post/model_two/blood_post_message.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-final CollectionReference _Collection = _firestore.collection("Blood Post Request");
+final CollectionReference _Collection = _firestore.collection("blood post request");
 
 class BloodPostCrud{
   //Add User here
   static Future<BloodPostResponseMessage> addBloodRequest({
-    required String? bloodGroup,
-    required String? patientProblem,
-    required String? bloodQuantity,
-    required String? dateTime,
-    required String? place,
-    required String? relative,
-    required String? hemoglobin,
-    required String? reference,
-    required String? more,
+     String? bloodGroup,
+     String? patientProblem,
+     String? bloodQuantity,
+     String? dateTime,
+     String? place,
+     String? relative,
+     String? hemoglobin,
+     String? reference,
+     String? more,
+    String? uiImg,
+    String? postUid,
   }) async {
     BloodPostResponseMessage bloodPostresponseMessage = BloodPostResponseMessage();
     DocumentReference documentReference = _Collection.doc();
@@ -31,6 +33,8 @@ class BloodPostCrud{
       "hemoglobin" : hemoglobin,
       "reference": reference,
       "more_details" : more,
+      "uIimage": uiImg,
+      "postuid": postUid
     };
 
     var result = await documentReference.set(data)
