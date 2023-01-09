@@ -4,7 +4,7 @@ class DonnerModel{
   static String PHONE="SingUp_phone";
   static String EMAIL="SingUp_email";
   static String GENDER="Gender";
-  static String ADDRESS="address";
+  // static String ADDRESS="address";
   static String BLOOD_DONAT_TETIME="TimeDonar";
   static String LAST_DONATE_TIME= "LastDate";
   static String IMAGE_ID= "image_url";
