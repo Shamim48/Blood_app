@@ -33,6 +33,31 @@ class _SignUpState extends State<SignUp> {
   firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
 
  late DocumentSnapshot donnerDoc;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  String emailChak = "";
+  // Password
+  final TextEditingController passwordController = TextEditingController();
+  bool isVasiable = true;
+  _errorText(){
+    if(passwordController.text.length < 8){
+      print("Password Must be 8 Character");
+    }
+  }
+  String pass = "";
+  //........
+  String birthdate = "Birth Date";
+  String? selectGender;
+  String? selectBloodGroup;
+  final TextEditingController timeDonarController = TextEditingController();
+  String lastdate = "What is the last date of blood donation?";
+  String? divisionChoose;
+  String? districtChoise;
+  String? upazilasChoise;
+  String? unionChoise;
+
+
 
 
 
@@ -88,30 +113,6 @@ class _SignUpState extends State<SignUp> {
       print('error occured');
     }
   }
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  String emailChak = "";
-  // Password
-  final TextEditingController passwordController = TextEditingController();
-  bool isVasiable = true;
-  _errorText(){
-    if(passwordController.text.length < 8){
-      print("Password Must be 8 Character");
-    }
-  }
-  String pass = "";
-  //........
-  String birthdate = "Birth Date";
-  String? selectGender;
-  String? selectBloodGroup;
-  final TextEditingController timeDonarController = TextEditingController();
-  String lastdate = "What is the last date of blood donation?";
-  String? DivisionChoose;
-  String? DistrictChoise;
-  String? UpazilasChoise;
-  String? unionChoise;
 
 
 
@@ -487,10 +488,10 @@ class _SignUpState extends State<SignUp> {
               fontSize: 18,
               fontWeight: FontWeight.w500
           ),
-          value: DivisionChoose,
+          value: divisionChoose,
           onChanged: (value){
             setState(() {
-              DivisionChoose = value as String?;
+              divisionChoose = value as String?;
             });
           },
           items: DivisionItem.map((valueItem){
@@ -522,10 +523,10 @@ class _SignUpState extends State<SignUp> {
               fontSize: 18,
               fontWeight: FontWeight.w500,
           ),
-          value: DistrictChoise,
+          value: districtChoise,
           onChanged: (value){
             setState(() {
-              DistrictChoise = value as String?;
+              districtChoise = value as String?;
             });
           },
           items: DistrictItem.map((valueItem){
@@ -557,10 +558,10 @@ class _SignUpState extends State<SignUp> {
               fontSize: 18,
               fontWeight: FontWeight.w500
           ),
-          value: UpazilasChoise,
+          value: upazilasChoise,
           onChanged: (value){
             setState(() {
-              UpazilasChoise = value as String?;
+              upazilasChoise = value as String?;
             });
           },
           items: Upazilas.map((valueItem){
@@ -572,44 +573,62 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-    final union = Container(
-      height: 50,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.grey),
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
-        child: DropdownButton(
-          hint: Text("Union", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
-          icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
-          iconSize: 30,
-          isExpanded: true,
-          underline: SizedBox(),
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w500
-          ),
-          value: unionChoise,
-          onChanged: (value){
-            setState(() {
-              unionChoise = value as String?;
-            });
-          },
-          items: Union.map((valueItem){
-            return DropdownMenuItem(
-              value: valueItem,
-              child: Text(valueItem),
-            );
-          }).toList(),
-        ),
-      ),
-    );
+    // final union = Container(
+    //   height: 50,
+    //   width: MediaQuery.of(context).size.width,
+    //   decoration: BoxDecoration(
+    //     border: Border.all(width: 1, color: Colors.grey),
+    //     borderRadius: BorderRadius.circular(40),
+    //   ),
+    //   child: Padding(
+    //     padding: const EdgeInsets.only(left: 15, right: 15),
+    //     child: DropdownButton(
+    //       hint: Text("Union", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+    //       icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
+    //       iconSize: 30,
+    //       isExpanded: true,
+    //       underline: SizedBox(),
+    //       style: TextStyle(
+    //           color: Colors.black,
+    //           fontSize: 18,
+    //           fontWeight: FontWeight.w500
+    //       ),
+    //       value: unionChoise,
+    //       onChanged: (value){
+    //         setState(() {
+    //           unionChoise = value as String?;
+    //         });
+    //       },
+    //       items: Union.map((valueItem){
+    //         return DropdownMenuItem(
+    //           value: valueItem,
+    //           child: Text(valueItem),
+    //         );
+    //       }).toList(),
+    //     ),
+    //   ),
+    // );
     final registration = InkWell(
       onTap: () async {
-        uploadFile();
+        if(file==null){
+          EasyLoading.showError("Please Select Image");
+          return;
+        }
+        if(divisionChoose==""){
+          EasyLoading.showError("Please Select Division");
+          return;
+        }
+        if(districtChoise==""){
+          EasyLoading.showError("Please Select Image");
+          return;
+        }
+        if(upazilasChoise==""){
+          EasyLoading.showError("Please Select Image");
+          return;
+        }
+        if (_ScaffoldKey.currentState!.validate()) {
+          uploadFile();
+        }
 
         // String? signInmsg = await authenticationService.signIn(email: emailChak, password: pass);
       },
@@ -771,8 +790,8 @@ class _SignUpState extends State<SignUp> {
                   upozilas,
 
                   //,,,,,,,,,,,,,,,,,,,,,,Union..................
-                  SizedBox(height: 20,),
-                  union,
+                  // SizedBox(height: 20,),
+                  // union,
 
                   //..................... Registation................
                   SizedBox(height: 40,),
@@ -794,7 +813,6 @@ class _SignUpState extends State<SignUp> {
 
   void registerDonner(var ref) async {
     String  image_url= await ref.getDownloadURL();
-    if (_ScaffoldKey.currentState!.validate()){
       var response = await AuthCrud.SignUp_CRUD(
         name: nameController.text,
         phone: phoneController.text,
@@ -805,6 +823,9 @@ class _SignUpState extends State<SignUp> {
         timedonar: timeDonarController.text,
         lastdate: lastdate,
         image_url: image_url,
+        division: divisionChoose,
+        district: districtChoise,
+        upozilas: upazilasChoise,
       );
       FirebaseAuth auth = FirebaseAuth.instance;
       String? userId = auth.currentUser!.uid;
@@ -832,7 +853,7 @@ class _SignUpState extends State<SignUp> {
       emailController.clear();
       passwordController.clear();
       timeDonarController.clear();
-    }
+
   }
 }
 

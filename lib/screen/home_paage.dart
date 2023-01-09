@@ -2,9 +2,11 @@ import 'package:blood_app/screen/search_page.dart';
 import 'package:blood_app/utils/styles.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../utils/color_resources.dart';
+import 'end_Drawer.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -29,7 +31,18 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldkey,
-
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
+        endDrawer: CustomEndDrawer(),
         backgroundColor: ColorResources.WHITE,
         body: ListView(
           children: [
