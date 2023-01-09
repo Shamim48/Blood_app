@@ -5,7 +5,6 @@ import 'package:blood_app/utils/color_resources.dart';
 import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLuncher;
 
 
 
@@ -117,7 +116,7 @@ class _ListPage extends State<BloodPostListPage> {
                                       children: [
                                         IconButton(
                                             onPressed: (){
-                                              _makePhoneCall(e["relative_mobile"] );
+
                                             },
                                             icon: const Icon(Icons.call,color: Colors.green,),
                                           iconSize: 30,
@@ -129,7 +128,7 @@ class _ListPage extends State<BloodPostListPage> {
                                       children: [
                                         IconButton(
                                             onPressed: (){
-                                              _makeSms(e["relative_mobile"]);
+
                                             },
                                             icon:const Icon(Icons.message,color: Colors.amber,),
                                           iconSize: 30,
@@ -165,21 +164,7 @@ class _ListPage extends State<BloodPostListPage> {
 }
 
 
-Future<void> _makePhoneCall(String phoneNumber) async {
-  final Uri laungchUri = Uri(
-    scheme: 'tel',
-    path: "+88$phoneNumber",
-  );
-  await UrlLuncher.launchUrl(laungchUri);
-}
 
-Future<void> _makeSms(String phoneNumber) async {
-  final Uri laungchUri = Uri(
-    scheme: 'sms',
-    path: "+88$phoneNumber",
-  );
-  await UrlLuncher.launchUrl(laungchUri);
-}
 
 
 

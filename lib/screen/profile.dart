@@ -1,7 +1,7 @@
 import 'package:blood_app/model/donner_model.dart';
 import 'package:blood_app/utils/color_resources.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLuncher;
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:blood_app/model/profile_crud.dart';
@@ -109,7 +109,7 @@ class _pofileState extends State<pofile> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        _makecall(donnerDoc[DonnerModel.PHONE]);
+                       // _makecall(donnerDoc[DonnerModel.PHONE]);
                       }, icon: Image.asset('assets/images/phone-message.png',),
                     ),
                     Text("Call",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
@@ -119,7 +119,7 @@ class _pofileState extends State<pofile> {
                   children: [
                     IconButton(
                       onPressed: (){
-                        _makesms(donnerDoc[DonnerModel.PHONE]);
+                      //  _makesms(donnerDoc[DonnerModel.PHONE]);
                       }, icon: Image.asset('assets/images/message.png'),
                     ),
                     Text("Message",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
@@ -162,18 +162,4 @@ class _pofileState extends State<pofile> {
   }
 }
 
-Future <void> _makecall (String phone) async {
-  final Uri lunchuri = Uri(
-      scheme: 'tel',
-      path: '+88${phone}'
-  );
-  await UrlLuncher.launchUrl(lunchuri);
-}
 
-Future <void> _makesms (String message) async{
-  final Uri lunchuri = Uri(
-    scheme: 'sms',
-    path: '+88${message}',
-  );
-  await UrlLuncher.launchUrl(lunchuri);
-}
