@@ -31,17 +31,6 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldkey,
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pop(context);
-              },
-            )
-          ],
-        ),
         endDrawer: CustomEndDrawer(),
         backgroundColor: ColorResources.WHITE,
         body: ListView(
@@ -52,12 +41,18 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(10),
                   child: Row(
                     children: [
-                      Container(
-                          height: 60,
-                          width: 60,
-                          child: Image.asset(
-                            "assets/images/blood-drop.png",
-                          )),
+                      InkWell(
+                        onTap: (){
+                          FirebaseAuth.instance.signOut();
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            height: 60,
+                            width: 60,
+                            child: Image.asset(
+                              "assets/images/blood-drop.png",
+                            )),
+                      ),
                       Container(
                         child: Expanded(
                           child: Container(
