@@ -1,4 +1,5 @@
 import 'package:blood_app/model/division_model.dart';
+import 'package:blood_app/screen/blood_post_listpage.dart';
 import 'package:blood_app/screen/splashscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -144,6 +145,8 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            TextButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => BloodPostListPage(),));},
+                child: Text("list page"))
           ],
         ),
       ),
