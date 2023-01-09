@@ -68,6 +68,8 @@ class ColorResources {
   static const Color TEXT_BG = Color(0xffF3F9FF);
   static const Color GREEN = Color(0xff23CB60);
   static const Color FLOATING_BTN = Color(0xff7DB6F5);
+  static const Color BLOOD_COLOR = Color(0xffCC1100);
+
 
 
 
