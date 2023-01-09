@@ -27,52 +27,6 @@ class _ListPage extends State<BloodPostListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      /*appBar: AppBar(
-        leading: Container(
-          height: 80,
-          width: 80,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(50)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: ClipRRect(
-              child: Image.asset(
-                "assets/logo/FCI LOGO.png",fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-        leadingWidth: 80,
-        toolbarHeight: 80,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/logo/background.png"),fit: BoxFit.cover
-              )
-          ),
-        ),
-        title: const Text("FCI BLOOD BANK",style: TextStyle(fontWeight: FontWeight.bold),),
-        centerTitle: true,
-        actions: [
-          InkWell(
-            onTap: () {
-              _scaffoldKey.currentState?.openEndDrawer();
-              //Scaffold.of(context).openDrawer();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: ClipRRect(
-                child: Image.asset(
-                  "assets/logo/menus.png",
-                  height: 40,
-                  width: 40,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),*/
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context) => const AddBloodPostPage(),));

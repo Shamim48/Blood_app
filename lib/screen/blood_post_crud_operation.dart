@@ -59,45 +59,4 @@ class BloodPostCrud{
   }
 
 
-
-/*  // Update user here
-  static Future<BloodPostResponseMessage> updateBloodPost ({
-    required String? bloodGroup,
-    required String? patientProblem,
-    required String? bloodQuantity,
-    required String? dateTime,
-    required String? place,
-    required String? relative,
-    required String? hemoglobin,
-    required String? reference,
-    required String? more,
-    required String? docId,
-  })async {
-    BloodPostResponseMessage responseMessage = BloodPostResponseMessage();
-    DocumentReference documentReference = _Collection.doc(docId);
-
-    Map<String , dynamic> data = <String, dynamic>{
-      "blood_group" : bloodGroup,
-      "patient_problem" : patientProblem,
-      "blood_quantity" : bloodQuantity,
-      "date_time" : dateTime,
-      "place_where" : place,
-      "relative_mobile" : relative,
-      "hemoglobin" : hemoglobin,
-      "reference": reference,
-      "more_details" : more,
-    };
-
-    await documentReference
-        .update(data)
-        .whenComplete(() {
-      responseMessage.code= 200;
-      responseMessage.message = "Successfully updated";
-    })
-        .catchError((e){
-      responseMessage.code = 500;
-      responseMessage.message = e;
-    });
-    return responseMessage;
-  }*/
 }
