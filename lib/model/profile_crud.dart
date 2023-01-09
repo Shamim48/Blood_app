@@ -3,7 +3,7 @@ import 'package:blood_app/model/prifile_response.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-final CollectionReference _collection = _firestore.collection("custom end drawer");
+final CollectionReference _collection = _firestore.collection("signup");
 
 class ProfileCrud {
 
@@ -36,7 +36,7 @@ class ProfileCrud {
       DonnerModel.BLOOD_GROUP: blood_group,
       DonnerModel.BLOOD_DONAT_TETIME: times_blood_donet,
       DonnerModel.LAST_DONATE_TIME: last_donet_time,
-      DonnerModel.IMAGEID:imgid,
+      DonnerModel.IMAGE_ID:imgid,
       DonnerModel.USERID:uId,
 
     };
