@@ -8,5 +8,9 @@ class DonnerModel{
   static String BLOOD_DONAT_TETIME="TimeDonar";
   static String LAST_DONATE_TIME= "LastDate";
   static String IMAGE_ID= "image_url";
+
   static String USERID= "userId";
+  static String DIVISION = "Division";
+  static String DISTRICT = "District";
+  static String UPOZILAS = "upozilas";
 }

@@ -43,6 +43,9 @@ class AuthCrud {
      String? timedonar,
      String? lastdate,
     String? image_url,
+    String? division,
+    String? district,
+    String? upozilas
   }) async {
 
     SignUp_Response singUp_Response = SignUp_Response();
@@ -59,6 +62,10 @@ class AuthCrud {
       "TimeDonar" : timedonar,
       "LastDate" : lastdate,
       "image_url": image_url,
+      "Division" : division,
+      "District" : district,
+      "upozilas" : upozilas,
+
 
     };
 

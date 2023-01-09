@@ -57,14 +57,14 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                 height: 10,
               ),
               Text(
-                "Iftekhar Hossain",
+                donnerDoc[DonnerModel.NAME],
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
-                donnerDoc[DonnerModel.NAME],
+                donnerDoc[DonnerModel.PHONE],
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ],
