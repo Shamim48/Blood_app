@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:blood_app/model/donner_model.dart';
+import 'package:blood_app/model/profile_crud.dart';
 import 'package:blood_app/screen/Activity_Post_Crud.dart';
 import 'package:blood_app/screen/activity_post_ListPage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:blood_app/utils/color_resources.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +56,8 @@ class _Add_Activity_PostState extends State<Add_Activity_Post> {
     final destination = 'files/$dateTime';
 
     try {
-      final ref =firebase_storage.FirebaseStorage.instance.ref(destination);//.child('$dateTime');
+      final ref =FirebaseStorage.instance.ref(destination);
+          // .child('$dateTime');
       await ref.putFile(file!).snapshotEvents.listen((event) {
         switch(event.state)  {
           case TaskState.running:
@@ -118,6 +121,10 @@ class _Add_Activity_PostState extends State<Add_Activity_Post> {
 
     final UploadPost = InkWell(
       onTap: () async {
+        if(file==null){
+          EasyLoading.showError("Please Select Image");
+          return;
+        }
         if(_formkey.currentState!.validate()){
           uploadFile();
         }
@@ -142,7 +149,7 @@ class _Add_Activity_PostState extends State<Add_Activity_Post> {
 
 
     return  Scaffold(
-      backgroundColor: ColorResources.HINT_TEXT_COLOR,
+      backgroundColor: ColorResources.WHITE.withOpacity(0.8),
 
       body: ListView(
         children: [
@@ -231,15 +238,19 @@ class _Add_Activity_PostState extends State<Add_Activity_Post> {
   }
 
 
+
   void registerPost(var ref) async {
     String image_url = await ref.getDownloadURL();
-
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String? userId = auth.currentUser!.phoneNumber;
+    DocumentSnapshot  donnerDoc= await  ProfileCrud.readSingleDoner(id: userId);
+    String name=donnerDoc[DonnerModel.NAME];
       var response = await ActivityPostCrud.addActivityPost(
         activity_info: _postactivityController.text,
         image_url: image_url,
+        activity_post_uid: name ?? ""
       );
-      FirebaseAuth auth = FirebaseAuth.instance;
-      String? userId = auth.currentUser!.phoneNumber;
+
       if (response.code == 200) {
         EasyLoading.showSuccess("Post Added");
         /*showDialog(context: context,

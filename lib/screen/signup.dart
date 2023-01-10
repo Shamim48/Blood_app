@@ -87,10 +87,10 @@ class _SignUpState extends State<SignUp> {
   Future uploadFile() async {
     if (file == null) return;
     DateTime dateTime = DateTime.now();
-    final destination = 'files/';
+    final destination = 'user/';
 
     try {
-      final ref = firebase_storage.FirebaseStorage.instance.ref(destination);//.child('$dateTime');
+      final ref = firebase_storage.FirebaseStorage.instance.ref(destination).child('$dateTime');
       await ref.putFile(file!).snapshotEvents.listen((event) {
         switch(event.state)  {
           case TaskState.running:
@@ -132,59 +132,7 @@ class _SignUpState extends State<SignUp> {
       }
   }
 
-  List GenderItem = [
-    "Select Gender",
-    "Male",
-    "Female"
-  ];
 
-  List BloodGroup = [
-    "Select Blood Group",
-    "A+",
-    "A-",
-    "B+",
-    "B-",
-    "O+",
-    "O-",
-    "AB+",
-    "AB-",
-  ];
-
-  List DivisionItem = [
-    "Dhaka",
-    "Chittagong",
-    "Rajshahi",
-    "Sylhet",
-    "Khulna",
-    "Barisal",
-    "Rangpur",
-    "Mymensingh",
-  ];
-  List DistrictItem = [
-    "Dhaka",
-    "Gazipur",
-    "Kishoreganj",
-    "Manikganj",
-    "	Munshiganj",
-    "Narayanganj",
-    "Narsingdi",
-    "Tangail",
-    "Faridpur",
-    "Gopalganj",
-    "Madaripur",
-    "Rajbari",
-    "Shariatpur",
-  ];
-  List Upazilas = [
-    "Dohar",
-    "Keraniganj",
-    "Dhamrai",
-    "Nawabganj",
-    "Savar",
-  ];
-  List Union = [
-
-  ];
 
   // late DocumentSnapshot employeeDoc;
   //
@@ -637,11 +585,11 @@ class _SignUpState extends State<SignUp> {
           return;
         }
         if(districtChoise==""){
-          EasyLoading.showError("Please Select Image");
+          EasyLoading.showError("Please Select District");
           return;
         }
         if(upazilasChoise==""){
-          EasyLoading.showError("Please Select Image");
+          EasyLoading.showError("Please Select Upazila");
           return;
         }
         if (_ScaffoldKey.currentState!.validate()) {
@@ -808,7 +756,6 @@ class _SignUpState extends State<SignUp> {
                   //.................Upazilas..........................
                   SizedBox(height: 20,),
                   upozilas,
-
                   //,,,,,,,,,,,,,,,,,,,,,,Union..................
                   // SizedBox(height: 20,),
                   // union,
@@ -841,11 +788,11 @@ class _SignUpState extends State<SignUp> {
         gender: selectGender.toString(),
         bloodgroup: selectBloodGroup.toString(),
         timedonar: timeDonarController.text,
-        lastdate: lastdate,
-        image_url: image_url,
-        division: divisionChoose,
-        district: districtChoise,
-        upozilas: upazilasChoise,
+        lastdate: lastdate== "What is the last date of blood donation?" ? "": lastdate,
+        image_url: image_url ?? "",
+        division: divisionChoose ?? "",
+        district: districtChoise ?? "",
+        upozilas: upazilasChoise ?? "",
       );
       FirebaseAuth auth = FirebaseAuth.instance;
       String? userId = auth.currentUser!.uid;
@@ -897,3 +844,66 @@ Future<DateTime?> getDateFromCalendar(BuildContext context) async {
     },
   );
 }
+
+List GenderItem = [
+  "Select Gender",
+  "Male",
+  "Female"
+];
+
+List BloodGroup = [
+  "Select Blood Group",
+  "A+",
+  "A-",
+  "B+",
+  "B-",
+  "O+",
+  "O-",
+  "AB+",
+  "AB-",
+];
+
+List DivisionItem = [
+  "Chittagong",
+  "Dhaka",
+  "Rajshahi",
+  "Sylhet",
+  "Khulna",
+  "Barisal",
+  "Rangpur",
+  "Mymensingh",
+];
+List DistrictItem = [
+  "Feni",
+  "Chitagogn",
+  "Commilla",
+  "Noakhali",
+  "Chadpur",
+  "Gazipur",
+  "Kishoreganj",
+  "Manikganj",
+  "	Munshiganj",
+  "Narayanganj",
+  "Narsingdi",
+  "Tangail",
+  "Faridpur",
+  "Gopalganj",
+  "Madaripur",
+  "Rajbari",
+  "Shariatpur",
+];
+List Upazilas = [
+  "Feni Sadar",
+  "Chagol Naiya",
+  "Porshuram",
+  "Sunagazi",
+  "Dagonbuiya",
+  "Dohar",
+  "Keraniganj",
+  "Dhamrai",
+  "Nawabganj",
+  "Savar",
+];
+List Union = [
+
+];

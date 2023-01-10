@@ -48,8 +48,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       InkWell(
                         onTap: (){
-                          FirebaseAuth.instance.signOut();
-                          Navigator.pop(context);
+
                         },
                         child: Container(
                             height: 60,
@@ -184,19 +183,15 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(15),
                       child: GridView.count(
                         crossAxisCount: 3,
-                        crossAxisSpacing: 7,
+                        crossAxisSpacing: 5,
                         mainAxisSpacing:30,
                         children:[
-                          Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Blood Search", onTab: () => SearchPage()),
-
-                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Blood Request", onTab: () => BloodPostListPage()),
-
-                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Blood Request", onTab: () => SearchPage()),
-
-                          Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => Profile()),
+                          Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Search", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Request Blood", onTab: () => BloodPostListPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => Profile(isDonner: false,donnerPhone: FirebaseAuth.instance.currentUser!.phoneNumber,)),
                           Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => ActivityPostListPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Communication", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/info.png"), title: "Info", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Contact", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/info.png"), title: "About", onTab: () => SearchPage()),
                         ],
                       ),
                     ),

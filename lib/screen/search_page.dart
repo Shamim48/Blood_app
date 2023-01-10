@@ -1,4 +1,8 @@
 
+import 'package:blood_app/model/donner_model.dart';
+import 'package:blood_app/screen/profile.dart';
+import 'package:blood_app/screen/signup.dart';
+import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +37,121 @@ class _SearchPageState extends State<SearchPage> {
     "Mymensingh"
   ];
 
+  String? divisionChoose;
+  String? districtChoise;
+  String? upazilasChoise;
+
   String bloodGroup="";
+
+
   @override
   Widget build(BuildContext context) {
+
+    final division = Container(
+      height: 40,
+      width: MediaQuery.of(context).size.width/2.5,
+      decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.grey),
+        borderRadius: BorderRadius.circular(40),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15),
+        child: DropdownButton(
+          hint: Text("Division", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+          icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
+          iconSize: 30,
+          isExpanded: true,
+          underline: SizedBox(),
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w500
+          ),
+          value: divisionChoose,
+          onChanged: (value){
+            setState(() {
+              divisionChoose = value as String?;
+            });
+          },
+          items: DivisionItem.map((valueItem){
+            return DropdownMenuItem(
+              value: valueItem,
+              child: Text(valueItem),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+    final distric = Container(
+      height: 40,
+      width: MediaQuery.of(context).size.width/2.5,
+      decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.grey),
+        borderRadius: BorderRadius.circular(40),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15),
+        child: DropdownButton(
+          hint: Text("District", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+          icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
+          iconSize: 30,
+          isExpanded: true,
+          underline: SizedBox(),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
+          value: districtChoise,
+          onChanged: (value){
+            setState(() {
+              districtChoise = value as String?;
+            });
+          },
+          items: DistrictItem.map((valueItem){
+            return DropdownMenuItem(
+              value: valueItem,
+              child: Text(valueItem),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+    final upozilas = Container(
+      height: 40,
+      width: MediaQuery.of(context).size.width/2.5,
+      decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.grey),
+        borderRadius: BorderRadius.circular(40),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15),
+        child: DropdownButton(
+          hint: Text("Upazilas", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+          icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
+          iconSize: 30,
+          isExpanded: true,
+          underline: SizedBox(),
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w500
+          ),
+          value: upazilasChoise,
+          onChanged: (value){
+            setState(() {
+              upazilasChoise = value as String?;
+            });
+          },
+          items: Upazilas.map((valueItem){
+            return DropdownMenuItem(
+              value: valueItem,
+              child: Text(valueItem),
+            );
+          }).toList(),
+        ),
+      ),
+    );
     return SafeArea(
       child: Scaffold(
         key: _scaffoldkey,
@@ -62,7 +178,7 @@ class _SearchPageState extends State<SearchPage> {
                             width: 100,
                             child: const Center(
                                 child: Text(
-                                  "FCI Blood Bank",
+                                  "Blood Search",
                                   style: TextStyle(
                                       fontSize: 25, fontWeight: FontWeight.bold),
                                 )),
@@ -98,83 +214,56 @@ class _SearchPageState extends State<SearchPage> {
                     ],
                   ),
                   Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        division,
+                        SizedBox(width: 10,),
+                        distric
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(width: 10,),
+                        upozilas,
+                        SizedBox(width: 10,),
+                        Expanded(child: Container())
+
+                      ],
+                    ),
+                  ),
+
+                  /*Padding(
                     padding: const EdgeInsets.all(20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        upozilas,
+                        SizedBox(width: 10,),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: Container(
                             height: 40,
-                            width: MediaQuery.of(context).size.width / 2.5,
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              border: Border.all(width: 1),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20)),
+                                borderRadius: BorderRadius.all(Radius.circular(50)),
+                                color: ColorResources.COLOR_PRIMARY
                             ),
-                            child: Padding(
-                              padding:
-                              EdgeInsets.only(right: 15, left: 15),
-                              child: DropdownButton(
-                                hint: Text("Division"),
-                                icon:  Icon(Icons.arrow_drop_down),
-                                iconSize: 30,
-                                isExpanded: true,
-                                underline: SizedBox(),
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                                value: DivisionChoose,
-                                onChanged: (value) {
-                                  setState(() {
-                                    DivisionChoose = value as String?;
-                                  });
-                                },
-                                items: divisionItem.map((valueItem) {
-                                  return DropdownMenuItem(
-                                    value: valueItem,
-                                    child: Text(valueItem),
-                                  );
-                                }).toList(),
-                              ),
-                            )),
-                        Container(
-                            height: 40,
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            decoration: BoxDecoration(
-                              border: Border.all(width: 1),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: Padding(
-                              padding:
-                              const EdgeInsets.only(right: 15, left: 15),
-                              child: DropdownButton(
-                                hint: const Text("District"),
-                                icon: const Icon(Icons.arrow_drop_down),
-                                iconSize: 30,
-                                isExpanded: true,
-                                underline: SizedBox(),
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                                value: DivisionChoose,
-                                onChanged: (value) {
-                                  setState(() {
-                                    DivisionChoose = value as String?;
-                                  });
-                                },
-                                items: divisionItem.map((valueItem) {
-                                  return DropdownMenuItem(
-                                    value: valueItem,
-                                    child: Text(valueItem),
-                                  );
-                                }).toList(),
-                              ),
-                            )),
+                            child: Text("Search Blood", style: LatoBold,),
+                          ),
+                        )
                       ],
                     ),
-                  ),
+                  ),*/
+/*
                   Container(
                       height: 40,
                       width: MediaQuery.of(context).size.width / 2.5,
@@ -208,6 +297,7 @@ class _SearchPageState extends State<SearchPage> {
                           }).toList(),
                         ),
                       )),
+*/
                   Padding(
                     padding:  EdgeInsets.all(20),
                     child: Container(
@@ -227,7 +317,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 80,
+                                    width: 60,
                                     decoration:  BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                       color: bloodGroup=="A+" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -251,7 +341,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 80,
+                                    width: 60,
                                     decoration: BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                       color: bloodGroup=="AB+" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -274,7 +364,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 80,
+                                    width: 60,
                                     decoration:  BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="O+" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -296,7 +386,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 80,
+                                    width: 60,
                                     decoration: BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="B+" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -326,7 +416,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 80,
+                                    width: 60,
                                     decoration:  BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="AB-" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -348,7 +438,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 80,
+                                    width: 60,
                                     decoration:  BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="O-" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -370,7 +460,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 80,
+                                    width: 60,
                                     decoration:  BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="A-" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -392,7 +482,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 80,
+                                    width: 60,
                                     decoration:  BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                       color: bloodGroup=="B-" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -421,83 +511,79 @@ class _SearchPageState extends State<SearchPage> {
             ),
             Container(
               height: MediaQuery.of(context).size.height/2.2,
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index ){
-                  return Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20,bottom: 10),
-                    child: Container(
-                      height: 100,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[200],
-                          border: Border.all(width: 1,color: ColorResources.COLOR_PRIMARY)
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10,right: 10),
-                        child: Column(
-                          children: [
-                            SizedBox(width: 10,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(width: 1,color: Colors.black),
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Center(child: Text("AB+", style: TextStyle(color: ColorResources.COLOR_PRIMARY, fontSize: 10, fontWeight: FontWeight.bold),)),
-                                    ),
-                                    SizedBox(width: 10,),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text("Shek Farid Uddin Robin", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),),
-                                        Text("Last Donation : 10-06-2022", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], fontSize: 14),),
-                                        SizedBox(height: 5,),
-                                        Row(
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance.collection("signup").where("upozilas", isEqualTo: upazilasChoise).where("Blood_Group", isEqualTo: bloodGroup).limit(100).snapshots(),
+                builder: (context , snapshots){
+                  return (snapshots.connectionState==ConnectionState.waiting) ?
+                  Center(child: CircularProgressIndicator(),)
+                      : ListView.builder(
+                    itemCount: snapshots.data!.docs.length,
+                    padding: EdgeInsets.only(top: 10),
+                    itemBuilder: (BuildContext context, int index ){
+                      var data=snapshots.data!.docs[index].data() as Map<String , dynamic>;
+                      return InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> Profile(isDonner: true, donnerPhone: data[DonnerModel.PHONE])));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20, right: 20,bottom: 10),
+                          child: Container(
+                            height: 100,
+                            width: MediaQuery.of(context).size.width-120,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.grey[200],
+                                border: Border.all(width: 1,color: ColorResources.COLOR_PRIMARY)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10,right: 10, top: 10, bottom: 10),
+                              child: Container(
+                                child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text("Number : 01747606057",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], fontSize: 14)),
-                                            // IconButton(onPressed: (){},
-                                            //     icon: Icon(Icons.call,size: 15,))
+                                            Container(
+                                              height: 30,
+                                              width: 30,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(width: 1,color: Colors.black),
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.circular(5),
+                                              ),
+                                              child: Center(child: Text(data[DonnerModel.BLOOD_GROUP], style: TextStyle(color: ColorResources.COLOR_PRIMARY, fontSize: 10, fontWeight: FontWeight.bold),)),
+                                            ),
+                                            SizedBox(width: 10,),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text("${data[DonnerModel.NAME]}", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),),
+                                                Text("Last Donation : ${data[DonnerModel.LAST_DONATE_TIME]}", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], overflow: TextOverflow.clip, fontSize: 14),),
+                                                SizedBox(height: 5,),
+                                                Row(
+                                                  children: [
+                                                    Text("Number : ${data[DonnerModel.PHONE]}",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], fontSize: 14)),
+                                                    // IconButton(onPressed: (){},
+                                                    //     icon: Icon(Icons.call,size: 15,))
+                                                  ],
+                                                ),
+                                                // SizedBox(height: 5,),
+                                                Text("Location : ${data[DonnerModel.DISTRICT]},${data[DonnerModel.UPOZILAS]} ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], fontSize: 14),),
+                                              ],
+                                            ),
+
                                           ],
                                         ),
-                                        // SizedBox(height: 5,),
-                                        Text("Location : Feni", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], fontSize: 14),),
-                                      ],
-                                    ),
+                              ),
 
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    IconButton(onPressed: (){},
-                                      icon: Icon(Icons.call,color: Colors.green,),
-                                    ),
-                                    IconButton(onPressed: (){},
-                                      icon: Icon(Icons.message,color: Colors.amber,),
-                                    ),
-
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
               ),
-            ),
+            )
           ],
         ),
       ),
