@@ -88,10 +88,12 @@ class _SignUpState extends State<SignUp> {
   Future uploadFile() async {
     if (file == null) return;
     DateTime dateTime = DateTime.now();
-    final destination = 'files/$dateTime';
+
+    final destination = 'user/';
 
     try {
-      final ref = firebase_storage.FirebaseStorage.instance.ref(destination);
+      final ref = firebase_storage.FirebaseStorage.instance.ref(destination).child('$dateTime');
+
       await ref.putFile(file!).snapshotEvents.listen((event) {
         switch(event.state)  {
           case TaskState.running:

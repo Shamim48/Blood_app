@@ -1,4 +1,5 @@
 
+import 'package:blood_app/screen/activity_post_ListPage.dart';
 import 'package:blood_app/screen/blood_post_listpage.dart';
 import 'package:blood_app/screen/communication.dart';
 
@@ -233,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                           Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Search", onTab: () => SearchPage()),
                           Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Request Blood", onTab: () => BloodPostListPage()),
                           Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => Profile(isDonner: false,donnerPhone: FirebaseAuth.instance.currentUser!.phoneNumber,)),
-                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => ActivityPostListPage()),
                           Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Contact", onTab: () => SearchPage()),
                           Custom_Gridview(image: Image.asset("assets/images/info.png"), title: "About", onTab: () => SearchPage()),
 

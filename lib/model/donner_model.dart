@@ -14,3 +14,12 @@ class DonnerModel{
   static String DISTRICT = "District";
   static String UPOZILAS = "upozilas";
 }
+
+class ActivityPost{
+  static String ACTIVITY_INFO='activity_info';
+  static String IMAGE_URL='image_url';
+  static String ACTIVITY_POST_UID="activity_post_uid";
+  static String DATE="date";
+  static String TIME="time";
+
+}
