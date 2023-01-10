@@ -20,7 +20,6 @@ class BloodPostCrud{
      String? hemoglobin,
      String? reference,
      String? more,
-    String? uiImg,
     String? postUid
   }) async {
     BloodPostResponseMessage bloodPostresponseMessage = BloodPostResponseMessage();
@@ -36,7 +35,6 @@ class BloodPostCrud{
       "hemoglobin" : hemoglobin,
       "reference": reference,
       "more_details" : more,
-      "uIimage": uiImg,
       "postuid": userId,
       "date": getDate(),
       "time": getTime(),

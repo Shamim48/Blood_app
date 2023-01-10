@@ -1,6 +1,7 @@
 
 import 'dart:io';
 import 'package:blood_app/main.dart';
+import 'package:blood_app/screen/botoom_navigation.dart';
 import 'package:blood_app/screen/home_paage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -87,10 +88,12 @@ class _SignUpState extends State<SignUp> {
   Future uploadFile() async {
     if (file == null) return;
     DateTime dateTime = DateTime.now();
+
     final destination = 'user/';
 
     try {
       final ref = firebase_storage.FirebaseStorage.instance.ref(destination).child('$dateTime');
+
       await ref.putFile(file!).snapshotEvents.listen((event) {
         switch(event.state)  {
           case TaskState.running:
@@ -126,12 +129,11 @@ class _SignUpState extends State<SignUp> {
   singleDonner()async{
       donnerDoc= await  AuthCrud.readCurrentUser(id: widget.phoneNumber);
       if(donnerDoc.exists){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>DashBoard()));
       }else{
         phoneController.text=widget.phoneNumber;
       }
   }
-
 
 
   // late DocumentSnapshot employeeDoc;
@@ -367,7 +369,7 @@ class _SignUpState extends State<SignUp> {
           }
         },
         decoration: InputDecoration(
-          labelText: "How many times have you donated blood?",
+          labelText: "How many time donated?",
           labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
@@ -804,7 +806,7 @@ class _SignUpState extends State<SignUp> {
                 content: Text(response.message.toString()),
               );
             });*/
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()), (route) => false);
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => DashBoard()), (route) => false);
       }
       else{
         EasyLoading.showError("Donner Registration Failed");
