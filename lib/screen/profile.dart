@@ -8,7 +8,9 @@ import 'package:blood_app/model/profile_crud.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLuncher;
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  bool isDonner=false;
+  String? donnerPhone;
+   Profile({Key? key, required this.isDonner, required this.donnerPhone}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -18,7 +20,7 @@ class _ProfileState extends State<Profile> {
 
   //String? id;
 
-  String? user_Id = FirebaseAuth.instance.currentUser!.phoneNumber;
+  String? user_Id ;
   late DocumentSnapshot donnerDoc;
   singleDonner()async{
     donnerDoc= await  ProfileCrud.readSingleDoner(id: user_Id);
@@ -32,6 +34,11 @@ class _ProfileState extends State<Profile> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    if(widget.isDonner){
+      user_Id=widget.donnerPhone;
+    }else{
+    user_Id= FirebaseAuth.instance.currentUser!.phoneNumber;
+    }
   }
 
   @override

@@ -91,8 +91,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       InkWell(
                         onTap: (){
-                          FirebaseAuth.instance.signOut();
-                          Navigator.pop(context);
+
                         },
                         child: Container(
                             height: 60,
@@ -227,15 +226,16 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(15),
                       child: GridView.count(
                         crossAxisCount: 3,
-                        crossAxisSpacing: 7,
+                        crossAxisSpacing: 5,
                         mainAxisSpacing:30,
                         children:[
-                          Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Blood Search", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/pen.png"), title: "Blood Post", onTab: () => BloodPostListPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/account.png"), title: "Profile", onTab: () => Profile()),
-                          Custom_Gridview(image: Image.asset("assets/images/juggler.png"), title: "Activities", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Contact", onTab: () => Communication()),
-                          Custom_Gridview(image: Image.asset("assets/images/information-button.png"), title: "About", onTab: () => SearchPage()),
+                        
+                          Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Search", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Request Blood", onTab: () => BloodPostListPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => Profile(isDonner: false,donnerPhone: FirebaseAuth.instance.currentUser!.phoneNumber,)),
+                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Contact", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/info.png"), title: "About", onTab: () => SearchPage()),
 
                         ],
                       ),

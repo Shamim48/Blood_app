@@ -35,7 +35,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
         child: FutureBuilder(
           builder: (context , snapshort){
             if(snapshort.connectionState==ConnectionState.done){
-              return Column(
+              return ListView(
                 children: [
                   Container(
                     height: 230,

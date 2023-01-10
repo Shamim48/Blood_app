@@ -66,7 +66,7 @@ class Images{
   static const String edu_bg_light = 'assets/images/edu_bg_light.png';
   static const String edu_bg_div = 'assets/images/edu_bg_div.png';
   static const String no_cloud_data = 'assets/images/no_cloud_data.png';
-  static const String logo_edu = 'assets/images/logo_edu.png';
+  static const String logo_edu = 'assets/images/fci_bood_logo.png';
 
 
 }
