@@ -149,6 +149,28 @@ class _Add_Activity_PostState extends State<Add_Activity_Post> {
 
 
     return  Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Container(
+          height: 80,
+          width: 80,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: ClipRRect(
+              child: Image.asset(
+                "assets/images/fci_blood_donation_logo.png",fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+        leadingWidth: 80,
+        toolbarHeight: 80,
+        title: const Text("FCI BLOOD BANK",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
+        centerTitle: true,
+      ),
       backgroundColor: ColorResources.WHITE.withOpacity(0.8),
 
       body: ListView(
@@ -162,7 +184,6 @@ class _Add_Activity_PostState extends State<Add_Activity_Post> {
                   _postActivity,
                   SizedBox(height: 10,),
                   Container(
-                      height: 250,
                       width: MediaQuery.of(context).size.width/1.15,
                       decoration: BoxDecoration(
                         border: Border.all(color: ColorResources.BLACK, width: 3),

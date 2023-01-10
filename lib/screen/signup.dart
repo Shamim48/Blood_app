@@ -877,7 +877,7 @@ List DivisionItem = [
 ];
 List DistrictItem = [
   "Feni",
-  "Chitagogn",
+  "Chitagogng",
   "Commilla",
   "Noakhali",
   "Chadpur",

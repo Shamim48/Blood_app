@@ -28,14 +28,36 @@ class _ActivityPostListPageState extends State<ActivityPostListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Container(
+          height: 80,
+          width: 80,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: ClipRRect(
+              child: Image.asset(
+                "assets/images/fci_blood_donation_logo.png",fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+        leadingWidth: 80,
+        toolbarHeight: 80,
+        title: const Text("FCI BLOOD BANK",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
+        centerTitle: true,
+      ),
 
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const Add_Activity_Post(),));
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => Add_Activity_Post()), (route) => false);
         },
         label: const Text('post'),
         icon: const Icon(Icons.add),
-        backgroundColor: Colors.blue,
+        backgroundColor: ColorResources.BLOOD_COLOR,
       ),
       body: StreamBuilder(
       stream: collectionReference,
@@ -73,7 +95,6 @@ class _ActivityPostListPageState extends State<ActivityPostListPage> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                            height: 250,
                                             width: MediaQuery.of(context).size.width/1.13,
                                             child: Image.network(e[ActivityPost.IMAGE_URL], fit: BoxFit.cover,)
                                         ),
