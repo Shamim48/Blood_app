@@ -1,6 +1,7 @@
 import 'package:blood_app/model/donner_model.dart';
 import 'package:blood_app/model/prifile_response.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _collection = _firestore.collection("signup");
@@ -21,10 +22,8 @@ class ProfileCrud {
 
   }) async {
     Response response = Response();
-
-
-    DocumentReference documentReference = _collection.doc();
-
+    String? phone = FirebaseAuth.instance.currentUser!.phoneNumber;
+    DocumentReference documentReference = _collection.doc(phone);
 
 
     Map<String, dynamic> setdata = <String, dynamic>{

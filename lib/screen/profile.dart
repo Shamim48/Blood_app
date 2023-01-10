@@ -5,14 +5,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:blood_app/model/profile_crud.dart';
-class pofile extends StatefulWidget {
-  const pofile({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  State<pofile> createState() => _pofileState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _pofileState extends State<pofile> {
+class _ProfileState extends State<Profile> {
 
   //String? id;
 

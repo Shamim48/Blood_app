@@ -219,6 +219,12 @@ class _SignUpState extends State<SignUp> {
             borderRadius: BorderRadius.circular(35),
             borderSide: BorderSide(color: Colors.grey),
           ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(35),
+              borderSide: BorderSide(
+                color: ColorResources.COLOR_PRIMARY,
+              )
+          ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
             borderSide: BorderSide(color: Colors.grey),
@@ -245,6 +251,12 @@ class _SignUpState extends State<SignUp> {
             borderRadius: BorderRadius.circular(35),
             borderSide: BorderSide(color: Colors.grey),
           ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(35),
+              borderSide: BorderSide(
+                color: ColorResources.COLOR_PRIMARY,
+              )
+          ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
             borderSide: BorderSide(color: Colors.grey),
@@ -270,7 +282,7 @@ class _SignUpState extends State<SignUp> {
         labelText: "Email Address",
         labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey,fontSize: 16),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(35),
             borderSide: BorderSide(
               color: ColorResources.COLOR_PRIMARY,
             )
@@ -412,6 +424,12 @@ class _SignUpState extends State<SignUp> {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
             borderSide: BorderSide(color: Colors.grey),
+          ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(35),
+              borderSide: BorderSide(
+                color: ColorResources.COLOR_PRIMARY,
+              )
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
@@ -700,6 +718,7 @@ class _SignUpState extends State<SignUp> {
                                   InkWell(
                                     onTap: (){
                                       _chooseCamera();
+                                      Navigator.pop(context);
                                     },
                                     splashColor: ColorResources.COLOR_PRIMARY,
                                     child: Row(
@@ -716,6 +735,7 @@ class _SignUpState extends State<SignUp> {
                                   InkWell(
                                     onTap: (){
                                       _chooseGallery();
+                                      Navigator.pop(context);
                                     },
                                     splashColor: ColorResources.COLOR_PRIMARY,
                                     child: Row(
