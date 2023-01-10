@@ -42,7 +42,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [ColorResources.RED_DEEP, ColorResources.RED_DEEP_ONE],
+                        colors: [ColorResources.BLOOD_COLOR, ColorResources.RED_DEEP_ONE],
                       ),
                     ),
                     child: Column(

@@ -1,4 +1,5 @@
 
+import 'package:blood_app/screen/about_donation.dart';
 import 'package:blood_app/screen/activity_post_ListPage.dart';
 import 'package:blood_app/screen/blood_post_listpage.dart';
 import 'package:blood_app/screen/communication.dart';
@@ -26,9 +27,9 @@ var _scaffoldkey = GlobalKey<ScaffoldState>();
 
 class _HomePageState extends State<HomePage> {
   List imagelist = [
-    {"id": 1, "image_path": "assets/images/Donor-PNG-Image1.png"},
-    {"id": 2, "image_path": "assets/images/Donor-PNG-HD2.png"},
-    {"id": 3, "image_path": "assets/images/Donor-PNG-Photos2.png"},
+    {"id": 1, "image_path": "assets/images/blood_carousel1.jpg"},
+    {"id": 2, "image_path": "assets/images/blood_carousel2l.jpg"},
+    {"id": 3, "image_path": "assets/images/Donor-PNG-HD2.png"},
   ];
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
@@ -88,63 +89,6 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const Padding(
                   padding: EdgeInsets.all(10),
-                 /* child: Row(
-                    children: [
-                      InkWell(
-                        onTap: (){
-
-                        },
-                        child: Container(
-                            height: 60,
-                            width: 60,
-                            child: Image.asset(
-                              "assets/images/blood-drop.png",
-                            )),
-                      ),
-                      Container(
-                        child: Expanded(
-                          child: Container(
-                            height: 45,
-                            width: 100,
-                            child: const Center(
-                                child: Text(
-                                  "FCI Blood Bank",
-                                  style: TextStyle(
-                                      fontSize: 25, fontWeight: FontWeight.bold),
-                                )),
-                          ),
-                        ),
-                      ),
-
-                      //...........................Custom Drawer........................
-                      Builder(
-                        builder: (BuildContext context) {
-                          return Padding(
-                            padding: EdgeInsets.all(8),
-                            child: InkWell(
-                              onTap: () {
-                                _scaffoldkey.currentState?.openEndDrawer();
-                              },
-                              child: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: Image.asset(
-                                    "assets/images/menu-bar.png",
-                                    color: ColorResources.COLOR_PRIMARY,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),*/
                 ),
                 const SizedBox(height: 25,),
 // ...............................Carousel Slider.......................
@@ -177,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Positioned(
-                        bottom: 10,
+                        bottom: 1,
                         left: 0,
                         right: 0,
                         child: Row(
@@ -232,11 +176,11 @@ class _HomePageState extends State<HomePage> {
                         children:[
                         
                           Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Search", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Request Blood", onTab: () => BloodPostListPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => Profile(isDonner: false,donnerPhone: FirebaseAuth.instance.currentUser!.phoneNumber,)),
-                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => ActivityPostListPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Contact", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/info.png"), title: "About", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/pen.png"), title: "Request", onTab: () => BloodPostListPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/account.png"), title: "Profile", onTab: () => Profile(isDonner: false,donnerPhone: FirebaseAuth.instance.currentUser!.phoneNumber,)),
+                          Custom_Gridview(image: Image.asset("assets/images/juggler.png"), title: "Activities", onTab: () => ActivityPostListPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/support.png"), title: "Contact", onTab: () => Communication()),
+                          Custom_Gridview(image: Image.asset("assets/images/information-button.png"), title: "About", onTab: () => AboutDonation()),
 
                         ],
                       ),

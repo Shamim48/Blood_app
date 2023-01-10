@@ -55,7 +55,7 @@ class _CommunicationState extends State<Communication> {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
-                        child: Image.asset("assets/images/shamim_vai.jpg"),
+                        child: Image.asset("assets/images/rakibul_islam.jpeg"),
                       )
                     ),
                     const SizedBox(width: 10,),
@@ -98,7 +98,7 @@ class _CommunicationState extends State<Communication> {
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
                         child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
+                          child: Image.asset("assets/images/shakib.jpeg"),
                           borderRadius: BorderRadius.circular(50),
                         )
                     ),
@@ -138,12 +138,15 @@ class _CommunicationState extends State<Communication> {
                         width: 70,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: ColorResources.BLOOD_COLOR,
+                            color: Colors.blue,
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
-                        child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
-                          borderRadius: BorderRadius.circular(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ClipRRect(
+                            child: Image.asset("assets/images/male-user.png"),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         )
                     ),
                     SizedBox(width: 10,),
@@ -184,12 +187,15 @@ class _CommunicationState extends State<Communication> {
                         width: 70,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: ColorResources.BLOOD_COLOR,
+                            color: Colors.blue,
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
-                        child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
-                          borderRadius: BorderRadius.circular(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ClipRRect(
+                            child: Image.asset("assets/images/woman-avatar.png"),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         )
                     ),
                     SizedBox(width: 10,),
@@ -234,7 +240,7 @@ class _CommunicationState extends State<Communication> {
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
                         child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
+                          child: Image.asset("assets/images/choyon_sarker.jpeg",fit: BoxFit.cover,),
                           borderRadius: BorderRadius.circular(50),
                         )
                     ),
@@ -276,12 +282,15 @@ class _CommunicationState extends State<Communication> {
                         width: 70,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: ColorResources.BLOOD_COLOR,
+                            color: Colors.blue,
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
-                        child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
-                          borderRadius: BorderRadius.circular(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ClipRRect(
+                            child: Image.asset("assets/images/male-user.png"),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         )
                     ),
                     SizedBox(width: 10,),
@@ -322,12 +331,15 @@ class _CommunicationState extends State<Communication> {
                         width: 70,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: ColorResources.BLOOD_COLOR,
+                            color: Colors.blue,
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
-                        child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
-                          borderRadius: BorderRadius.circular(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ClipRRect(
+                            child: Image.asset("assets/images/male-user.png"),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         )
                     ),
                     SizedBox(width: 10,),
@@ -368,12 +380,15 @@ class _CommunicationState extends State<Communication> {
                         width: 70,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: ColorResources.BLOOD_COLOR,
+                            color: Colors.blue,
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
-                        child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
-                          borderRadius: BorderRadius.circular(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ClipRRect(
+                            child: Image.asset("assets/images/male-user.png"),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         )
                     ),
                     SizedBox(width: 10,),
@@ -414,12 +429,15 @@ class _CommunicationState extends State<Communication> {
                         width: 70,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: ColorResources.BLOOD_COLOR,
+                            color: Colors.blue,
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
-                        child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
-                          borderRadius: BorderRadius.circular(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ClipRRect(
+                            child: Image.asset("assets/images/male-user.png"),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         )
                     ),
                     SizedBox(width: 10,),
@@ -459,12 +477,15 @@ class _CommunicationState extends State<Communication> {
                         width: 70,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: ColorResources.BLOOD_COLOR,
+                            color: Colors.blue,
                             border: Border.all(width: 2,color: ColorResources.BLOOD_COLOR)
                         ),
-                        child: ClipRRect(
-                          child: Image.asset("assets/images/shamim_vai.jpg"),
-                          borderRadius: BorderRadius.circular(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ClipRRect(
+                            child: Image.asset("assets/images/male-user.png"),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         )
                     ),
                     SizedBox(width: 10,),

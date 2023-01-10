@@ -2,6 +2,7 @@
 import 'package:blood_app/screen/add_blood_post_page.dart';
 import 'package:blood_app/screen/blood_post_crud_operation.dart';
 import 'package:blood_app/utils/color_resources.dart';
+import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLuncher;
@@ -77,12 +78,10 @@ class _ListPage extends State<BloodPostListPage> {
                                     color: ColorResources.BLOOD_COLOR,
                                     borderRadius: BorderRadius.circular(50),
                                   ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.network("https://cdn.pixabay.com/photo/2015/06/22/08/40/child-817373__480.jpg",height:40,width:40,fit: BoxFit.cover,),)
+                                  child: Icon(Icons.person,color: Colors.white,)
                                 ),
                                 const SizedBox(width: 15,),
-                                 Text("User Name",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
+                                Text(e["postuName"], style: LatoBold.copyWith(fontSize: 17),),
                               ],
                             ),
                             const SizedBox(height: 20,),
