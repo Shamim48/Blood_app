@@ -1,6 +1,10 @@
+import 'package:blood_app/model/donner_model.dart';
+import 'package:blood_app/model/profile_crud.dart';
 import 'package:blood_app/screen/blood_post_crud_operation.dart';
 import 'package:blood_app/screen/blood_post_listpage.dart';
 import 'package:blood_app/utils/color_resources.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -11,6 +15,8 @@ class AddBloodPostPage extends StatefulWidget {
   @override
   State<AddBloodPostPage> createState() => _AddBloodPostPageState();
 }
+
+
 
 class _AddBloodPostPageState extends State<AddBloodPostPage> {
   final _problemController = TextEditingController();
@@ -307,6 +313,10 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
     final postButton = TextButton(
         onPressed: () async{
           if (_formKey.currentState!.validate()){
+            FirebaseAuth auth = FirebaseAuth.instance;
+            String? userId = auth.currentUser!.phoneNumber;
+            DocumentSnapshot  donnerDoc= await  ProfileCrud.readSingleDoner(id: userId, );
+            String name=donnerDoc[DonnerModel.NAME];
             var response = await BloodPostCrud.addBloodRequest(
                 bloodQuantity: _bloodController.text,
                 dateTime: _dateController.text,
@@ -316,7 +326,8 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
                 place: _placeController.text,
                 reference: _referanceController.text,
                 relative: _relativenumberController.text,
-                bloodGroup: valueChoose
+                bloodGroup: valueChoose,
+                postUid: name ?? ""
             );
 
               _bloodController.clear();
