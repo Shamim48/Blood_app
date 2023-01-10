@@ -1,4 +1,5 @@
 
+import 'package:blood_app/screen/activity_post_ListPage.dart';
 import 'package:blood_app/screen/blood_post_listpage.dart';
 
 import 'package:blood_app/screen/profile.dart';
@@ -193,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                           Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Blood Request", onTab: () => SearchPage()),
 
                           Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => Profile()),
-                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => ActivityPostListPage()),
                           Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Communication", onTab: () => SearchPage()),
                           Custom_Gridview(image: Image.asset("assets/images/info.png"), title: "Info", onTab: () => SearchPage()),
                         ],
