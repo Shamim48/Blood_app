@@ -1,4 +1,6 @@
+
 import 'package:blood_app/screen/blood_post_listpage.dart';
+
 import 'package:blood_app/screen/profile.dart';
 import 'package:blood_app/screen/search_page.dart';
 import 'package:blood_app/utils/styles.dart';
@@ -33,17 +35,6 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldkey,
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pop(context);
-              },
-            )
-          ],
-        ),
         endDrawer: CustomEndDrawer(),
         backgroundColor: ColorResources.WHITE,
         body: ListView(
@@ -54,12 +45,18 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(10),
                   child: Row(
                     children: [
-                      Container(
-                          height: 60,
-                          width: 60,
-                          child: Image.asset(
-                            "assets/images/blood-drop.png",
-                          )),
+                      InkWell(
+                        onTap: (){
+                          FirebaseAuth.instance.signOut();
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            height: 60,
+                            width: 60,
+                            child: Image.asset(
+                              "assets/images/blood-drop.png",
+                            )),
+                      ),
                       Container(
                         child: Expanded(
                           child: Container(
@@ -190,7 +187,11 @@ class _HomePageState extends State<HomePage> {
                         mainAxisSpacing:30,
                         children:[
                           Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Blood Search", onTab: () => SearchPage()),
+
                           Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Blood Request", onTab: () => BloodPostListPage()),
+
+                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Blood Request", onTab: () => SearchPage()),
+
                           Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => Profile()),
                           Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => SearchPage()),
                           Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Communication", onTab: () => SearchPage()),
