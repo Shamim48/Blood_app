@@ -332,7 +332,9 @@ class _AddBloodPostPageState extends State<AddBloodPostPage> {
             }else {
               EasyLoading.showError( "Post request Failed");
             }
-             Navigator.push(context, MaterialPageRoute(builder: (context) => BloodPostListPage(),));
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => BloodPostListPage()), (route) => false);
+
+
           }
 
         },

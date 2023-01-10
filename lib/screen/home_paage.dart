@@ -1,5 +1,6 @@
 
 import 'package:blood_app/screen/blood_post_listpage.dart';
+import 'package:blood_app/screen/communication.dart';
 
 import 'package:blood_app/screen/profile.dart';
 import 'package:blood_app/screen/search_page.dart';
@@ -35,15 +36,58 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldkey,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+        leading: Container(
+          height: 80,
+          width: 80,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: ClipRRect(
+              child: Image.asset(
+                "assets/images/fci_blood_donation_logo.png",fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+          leadingWidth: 80,
+          toolbarHeight: 80,
+          title: const Text("FCI BLOOD BANK",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
+          centerTitle: true,
+        actions: [
+          InkWell(
+            onTap: () {
+              _scaffoldkey.currentState?.openEndDrawer();
+            },
+            child: Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Image.asset(
+                  "assets/images/menu-bar.png",
+                  color: ColorResources.COLOR_PRIMARY,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
         endDrawer: CustomEndDrawer(),
         backgroundColor: ColorResources.WHITE,
         body: ListView(
           children: [
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
+                const Padding(
+                  padding: EdgeInsets.all(10),
+                 /* child: Row(
                     children: [
                       InkWell(
                         onTap: (){
@@ -100,9 +144,9 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ],
-                  ),
+                  ),*/
                 ),
-                SizedBox(height: 25,),
+                const SizedBox(height: 25,),
 // ...............................Carousel Slider.......................
                 Padding(
                   padding: const EdgeInsets.all(20),
@@ -147,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                               child: Container(
                                 width: currentIndex == entry.key ? 17 : 7,
                                 height: 7.0,
-                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                margin: const EdgeInsets.symmetric(horizontal: 3),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     color: currentIndex == entry.key
@@ -187,15 +231,12 @@ class _HomePageState extends State<HomePage> {
                         mainAxisSpacing:30,
                         children:[
                           Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Blood Search", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/pen.png"), title: "Blood Post", onTab: () => BloodPostListPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/account.png"), title: "Profile", onTab: () => Profile()),
+                          Custom_Gridview(image: Image.asset("assets/images/juggler.png"), title: "Activities", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Contact", onTab: () => Communication()),
+                          Custom_Gridview(image: Image.asset("assets/images/information-button.png"), title: "About", onTab: () => SearchPage()),
 
-                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Blood Request", onTab: () => BloodPostListPage()),
-
-                          Custom_Gridview(image: Image.asset("assets/images/blood.png"), title: "Blood Request", onTab: () => SearchPage()),
-
-                          Custom_Gridview(image: Image.asset("assets/images/user.png"), title: "Profile", onTab: () => Profile()),
-                          Custom_Gridview(image: Image.asset("assets/images/water-drop.png"), title: "Activities", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/communication.png"), title: "Communication", onTab: () => SearchPage()),
-                          Custom_Gridview(image: Image.asset("assets/images/info.png"), title: "Info", onTab: () => SearchPage()),
                         ],
                       ),
                     ),

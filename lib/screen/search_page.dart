@@ -39,6 +39,49 @@ class _SearchPageState extends State<SearchPage> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldkey,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: Container(
+            height: 80,
+            width: 80,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: ClipRRect(
+                child: Image.asset(
+                  "assets/images/fci_blood_donation_logo.png",fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          leadingWidth: 80,
+          toolbarHeight: 80,
+          title: const Text("FCI BLOOD BANK",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
+          centerTitle: true,
+          actions: [
+            InkWell(
+              onTap: () {
+                _scaffoldkey.currentState?.openEndDrawer();
+              },
+              child: Container(
+                height: 60,
+                width: 60,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Image.asset(
+                    "assets/images/menu-bar.png",
+                    color: ColorResources.COLOR_PRIMARY,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
 
         backgroundColor: Colors.white,
         body: ListView(
@@ -47,7 +90,7 @@ class _SearchPageState extends State<SearchPage> {
               padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
               child: Column(
                 children: [
-                  Row(
+                /*  Row(
                     children: [
                       Container(
                           height: 60,
@@ -96,7 +139,7 @@ class _SearchPageState extends State<SearchPage> {
                         },
                       ),
                     ],
-                  ),
+                  ),*/
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: Row(
