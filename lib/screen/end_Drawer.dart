@@ -1,4 +1,6 @@
 import 'package:blood_app/model/donner_model.dart';
+import 'package:blood_app/screen/about_developer.dart';
+import 'package:blood_app/screen/profile.dart';
 import 'package:blood_app/utils/color_resources.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:blood_app/model/profile_crud.dart';
 
 class CustomEndDrawer extends StatefulWidget {
-  CustomEndDrawer({Key? key}) : super(key: key);
+  const CustomEndDrawer({Key? key}) : super(key: key);
 
   @override
   State<CustomEndDrawer> createState() => _CustomEndDrawerState();
@@ -38,7 +40,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                   Container(
                     height: 230,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [ColorResources.RED_DEEP, ColorResources.RED_DEEP_ONE],
                       ),
@@ -55,115 +57,119 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                           ),
                           borderRadius: BorderRadius.circular(100),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           donnerDoc[DonnerModel.NAME],
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: const TextStyle(fontSize: 20, color: Colors.white),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           donnerDoc[DonnerModel.PHONE],
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: const TextStyle(fontSize: 20, color: Colors.white),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ListTile(
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.bloodtype_outlined,
                       color: Colors.red,
+
                     ),
                     title: Text(
                       "Blood group : " + donnerDoc[DonnerModel.BLOOD_GROUP],
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
                   ListTile(
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.mail,
                       color: Colors.red,
                     ),
                     title: Text(
                       donnerDoc[DonnerModel.EMAIL],
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
                   ListTile(
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.calendar_month,
                       color: Colors.red,
                     ),
                     title: Text(
                       "Last blood donation : " + donnerDoc[DonnerModel.LAST_DONATE_TIME],
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
                   ListTile(
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.directions_walk_outlined,
                       color: Colors.red,
                     ),
                     title: Text(
-                      "How many times blood donate : " +
-                          donnerDoc[DonnerModel.BLOOD_DONAT_TETIME],
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      "How many times blood donate : " + donnerDoc[DonnerModel.BLOOD_DONAT_TETIME],
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(
                       Icons.create_outlined,
                       color: Colors.red,
                     ),
                     title: Text(
-                      "Update blood donation date : ",
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      "Update donation date : ",
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(
                       Icons.create_outlined,
                       color: Colors.red,
                     ),
                     title: Text(
                       "Update profile",
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
-                  ListTile(
-                    leading: Icon(
+                   ListTile(
+                    leading: const Icon(
                       Icons.people_outlined,
                       color: Colors.red,
                     ),
-                    title: Text(
-                      "About Developer",
-                      style: TextStyle(color: Colors.black, fontSize: 18),
-                    ),
+                    title: InkWell(onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => AboutDeveloper(),));
+                    },
+                        child: const Text(
+                          "About Developer",
+                          style: TextStyle(color: Colors.black, fontSize: 16),
+                        ),
+                    )
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(
                       Icons.share_outlined,
                       color: Colors.red,
                     ),
                     title: Text(
                       "Share",
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
                   ListTile(
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.logout_outlined,
                       color: Colors.red,
                     ),
-                    title: Text(
+                    title: const Text(
                       "Log out",
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     onTap: () {
                       FirebaseAuth.instance.signOut();
@@ -173,7 +179,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                 ],
               );
             }else {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           },
           future: singleDonner(),

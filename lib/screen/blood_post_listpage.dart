@@ -2,9 +2,9 @@
 import 'package:blood_app/screen/add_blood_post_page.dart';
 import 'package:blood_app/screen/blood_post_crud_operation.dart';
 import 'package:blood_app/utils/color_resources.dart';
-import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLuncher;
 
 
 
@@ -25,6 +25,28 @@ class _ListPage extends State<BloodPostListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Container(
+          height: 80,
+          width: 80,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: ClipRRect(
+              child: Image.asset(
+                "assets/images/fci_blood_donation_logo.png",fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+        leadingWidth: 80,
+        toolbarHeight: 80,
+        title: const Text("FCI BLOOD BANK",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
+        centerTitle: true,
+      ),
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -116,7 +138,7 @@ class _ListPage extends State<BloodPostListPage> {
                                       children: [
                                         IconButton(
                                             onPressed: (){
-
+                                              _makePhoneCall(e["relative_mobile"] );
                                             },
                                             icon: const Icon(Icons.call,color: Colors.green,),
                                           iconSize: 30,
@@ -128,8 +150,8 @@ class _ListPage extends State<BloodPostListPage> {
                                       children: [
                                         IconButton(
                                             onPressed: (){
-
-                                            },
+                                              _makeSms(e["relative_mobile"]);
+                                              },
                                             icon:const Icon(Icons.message,color: Colors.amber,),
                                           iconSize: 30,
                                         ),
@@ -163,6 +185,21 @@ class _ListPage extends State<BloodPostListPage> {
   }
 }
 
+Future<void> _makePhoneCall(String phoneNumber) async {
+  final Uri laungchUri = Uri(
+    scheme: 'tel',
+    path: "+88$phoneNumber",
+  );
+  await UrlLuncher.launchUrl(laungchUri);
+}
+
+Future<void> _makeSms(String phoneNumber) async {
+  final Uri laungchUri = Uri(
+    scheme: 'sms',
+    path: "+88$phoneNumber",
+  );
+  await UrlLuncher.launchUrl(laungchUri);
+}
 
 
 

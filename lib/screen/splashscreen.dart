@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:blood_app/main.dart';
+import 'package:blood_app/screen/botoom_navigation.dart';
 import 'package:blood_app/screen/home_paage.dart';
 import 'package:blood_app/screen/login_screen.dart';
 import 'package:blood_app/utils/styles.dart';
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(Duration(seconds: 2), () async{
       if (await FirebaseAuth.instance.currentUser != null) {
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => DashBoard()), (route) => false);
       } else {
         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => LogingPage()), (route) => false);
       }
