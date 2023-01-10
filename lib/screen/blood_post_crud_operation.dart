@@ -20,7 +20,8 @@ class BloodPostCrud{
      String? hemoglobin,
      String? reference,
      String? more,
-    String? postUid
+    String? postUid,
+    String? image_url,
   }) async {
     BloodPostResponseMessage bloodPostresponseMessage = BloodPostResponseMessage();
     DocumentReference documentReference = _Collection.doc();
@@ -36,6 +37,8 @@ class BloodPostCrud{
       "reference": reference,
       "more_details" : more,
       "postuid": userId,
+      "postuName":postUid,
+
       "date": getDate(),
       "time": getTime(),
     };
@@ -56,6 +59,14 @@ class BloodPostCrud{
   static Stream<QuerySnapshot> readBloodPostRequest (){
     CollectionReference notesItemCollection = _Collection;
     return notesItemCollection.snapshots();
+  }
+
+
+  static Future<DocumentSnapshot> readSingleDonerImageId({required String? id, required String? image_url})async {
+    CollectionReference notesItemCollection = _Collection;
+    DocumentReference documentReferencer = _Collection.doc(id);
+    DocumentSnapshot documentSnapshot=await documentReferencer.get();
+    return documentSnapshot;
   }
 
 
