@@ -95,7 +95,6 @@ class _ActivityPostListPageState extends State<ActivityPostListPage> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                            height: 250,
                                             width: MediaQuery.of(context).size.width/1.13,
                                             child: Image.network(e[ActivityPost.IMAGE_URL], fit: BoxFit.cover,)
                                         ),

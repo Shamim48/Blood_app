@@ -184,7 +184,6 @@ class _Add_Activity_PostState extends State<Add_Activity_Post> {
                   _postActivity,
                   SizedBox(height: 10,),
                   Container(
-                      height: 250,
                       width: MediaQuery.of(context).size.width/1.15,
                       decoration: BoxDecoration(
                         border: Border.all(color: ColorResources.BLACK, width: 3),
