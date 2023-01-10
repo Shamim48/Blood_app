@@ -212,10 +212,11 @@ class _SearchPageState extends State<SearchPage> {
                     padding:  EdgeInsets.all(20),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
                       child: Column(
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               InkWell(
                                 onTap: () {
@@ -226,7 +227,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 85,
+                                    width: 80,
                                     decoration:  BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                       color: bloodGroup=="A+" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -250,7 +251,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 85,
+                                    width: 80,
                                     decoration: BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                       color: bloodGroup=="AB+" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -273,7 +274,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 85,
+                                    width: 80,
                                     decoration:  BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="O+" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -295,7 +296,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 85,
+                                    width: 80,
                                     decoration: BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="B+" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -314,7 +315,7 @@ class _SearchPageState extends State<SearchPage> {
                             height: 5,
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               InkWell(
                                 onTap: () {
@@ -325,7 +326,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 85,
+                                    width: 80,
                                     decoration:  BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="AB-" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -347,7 +348,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 85,
+                                    width: 80,
                                     decoration:  BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="O-" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -369,7 +370,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 85,
+                                    width: 80,
                                     decoration:  BoxDecoration(
                                         border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                         color: bloodGroup=="A-" ? ColorResources.COLOR_PRIMARY: Colors.white,
@@ -391,7 +392,7 @@ class _SearchPageState extends State<SearchPage> {
                                 },
                                 child: Container(
                                     height: 35,
-                                    width: 85,
+                                    width: 80,
                                     decoration:  BoxDecoration(
                                       border: Border.all(width: 2,color: ColorResources.COLOR_PRIMARY),
                                       color: bloodGroup=="B-" ? ColorResources.COLOR_PRIMARY: Colors.white,

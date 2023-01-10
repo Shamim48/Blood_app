@@ -50,7 +50,7 @@ class AuthCrud {
 
     SignUp_Response singUp_Response = SignUp_Response();
     String? phone=FirebaseAuth.instance.currentUser!.phoneNumber;
-    DocumentReference documentReference = _signupCollectionReference.doc();
+    DocumentReference documentReference = _signupCollectionReference.doc(phone);
 
     Map<String, dynamic> singupData = <String, dynamic>{
       "SingUp_name" : name,
