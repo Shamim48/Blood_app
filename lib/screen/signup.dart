@@ -151,68 +151,60 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
 
-    final name = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.text,
-        controller: nameController,
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "Name",
-          labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
+    final name = TextFormField(
+      keyboardType: TextInputType.text,
+      controller: nameController,
+      style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "Name",
+        labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
         ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(35),
+            borderSide: BorderSide(
+              color: ColorResources.COLOR_PRIMARY,
+            )
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
+        ),
+        suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
       ),
     );
-    final phone = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.number,
-        controller: phoneController,
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "Phone Number",
-          labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
+    final phone = TextFormField(
+      keyboardType: TextInputType.number,
+      controller: phoneController,
+      style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "Phone Number",
+        labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
         ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(35),
+            borderSide: BorderSide(color: ColorResources.COLOR_PRIMARY,)
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
+        ),
+        suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
       ),
     );
     final email = TextFormField(
@@ -233,9 +225,7 @@ class _SignUpState extends State<SignUp> {
         labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey,fontSize: 16),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(
-              color: ColorResources.COLOR_PRIMARY,
-            )
+            borderSide: BorderSide(color: ColorResources.COLOR_PRIMARY,)
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(35),
@@ -357,34 +347,31 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-    final timedonar = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.number,
-        controller: timeDonarController,
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "How many time donated?",
-          labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
+    final timedonar = TextFormField(
+      keyboardType: TextInputType.number,
+      controller: timeDonarController,
+      style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "How many time donated?",
+        labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
+        ),
+        border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
+            borderSide: BorderSide(
+              color: ColorResources.COLOR_PRIMARY,
+            )
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
         ),
       ),
     );
