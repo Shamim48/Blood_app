@@ -280,8 +280,10 @@ class _Add_Activity_PostState extends State<Add_Activity_Post> {
                 content: Text(response.message.toString()),
               );
             });*/
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ActivityPostListPage()));
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (context) => ActivityPostListPage()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ActivityPostListPage(),));
+
       }
       else {
         EasyLoading.showError("Post Failed");

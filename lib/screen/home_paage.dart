@@ -28,8 +28,8 @@ var _scaffoldkey = GlobalKey<ScaffoldState>();
 class _HomePageState extends State<HomePage> {
   List imagelist = [
     {"id": 1, "image_path": "assets/images/blood_carousel1.jpg"},
-    {"id": 2, "image_path": "assets/images/blood_carousel2l.jpg"},
-    {"id": 3, "image_path": "assets/images/Donor-PNG-HD2.png"},
+    {"id": 2, "image_path": "assets/images/blood_carousel.jpg"},
+    {"id": 3, "image_path": "assets/images/blood_carousel2l.jpg"},
   ];
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Image.asset(
-                  "assets/images/menu-bar.png",
+                  "assets/images/menus.png",
                   color: ColorResources.COLOR_PRIMARY,
                 ),
               ),
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                 const Padding(
                   padding: EdgeInsets.all(10),
                 ),
-                const SizedBox(height: 25,),
+                const SizedBox(height: 15,),
 // ...............................Carousel Slider.......................
                 Padding(
                   padding: const EdgeInsets.all(20),
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Positioned(
-                        bottom: 1,
+                        bottom: 0,
                         left: 0,
                         right: 0,
                         child: Row(
@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
 
                 //........................Shadow and GridView....................
                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 70),
+                  padding: const EdgeInsets.only(left: 20,right: 20,top: 40),
                   child: Container(
                     height: 280,
                     width: double.infinity,
@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisSpacing:30,
                         children:[
                         
-                          Custom_Gridview(image: Image.asset("assets/images/paper.png"), title: "Search", onTab: () => SearchPage()),
+                          Custom_Gridview(image: Image.asset("assets/images/magnifying-glass.png"), title: "Search", onTab: () => SearchPage()),
                           Custom_Gridview(image: Image.asset("assets/images/pen.png"), title: "Request", onTab: () => BloodPostListPage()),
                           Custom_Gridview(image: Image.asset("assets/images/account.png"), title: "Profile", onTab: () => Profile(isDonner: false,donnerPhone: FirebaseAuth.instance.currentUser!.phoneNumber,)),
                           Custom_Gridview(image: Image.asset("assets/images/juggler.png"), title: "Activities", onTab: () => ActivityPostListPage()),

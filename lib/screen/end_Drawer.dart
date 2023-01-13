@@ -1,11 +1,13 @@
 import 'package:blood_app/model/donner_model.dart';
 import 'package:blood_app/screen/about_developer.dart';
+import 'package:blood_app/screen/login_screen.dart';
 import 'package:blood_app/screen/profile.dart';
 import 'package:blood_app/utils/color_resources.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:blood_app/model/profile_crud.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class CustomEndDrawer extends StatefulWidget {
   const CustomEndDrawer({Key? key}) : super(key: key);
@@ -49,27 +51,27 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
                           child: Image.network(
                             donnerDoc[DonnerModel.IMAGE_ID],
                             fit: BoxFit.cover,
                             height: 100,
                             width: 100,
                           ),
-                          borderRadius: BorderRadius.circular(100),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         Text(
                           donnerDoc[DonnerModel.NAME],
-                          style: const TextStyle(fontSize: 20, color: Colors.white),
+                          style: const TextStyle(fontSize: 24, color: Colors.white),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         Text(
                           donnerDoc[DonnerModel.PHONE],
-                          style: const TextStyle(fontSize: 20, color: Colors.white),
+                          style: const TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ],
                     ),
@@ -167,14 +169,17 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                       Icons.logout_outlined,
                       color: Colors.red,
                     ),
-                    title: const Text(
-                      "Log out",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                    onTap: () {
+                    title: InkWell(onTap: () {
                       FirebaseAuth.instance.signOut();
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LogingPage(),));
+                      EasyLoading.showSuccess("Logout Successful");
                     },
+                      child: const Text(
+                        "Log out",
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                    ),
+
                   ),
                 ],
               );
