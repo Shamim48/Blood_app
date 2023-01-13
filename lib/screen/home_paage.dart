@@ -28,8 +28,9 @@ var _scaffoldkey = GlobalKey<ScaffoldState>();
 class _HomePageState extends State<HomePage> {
   List imagelist = [
     {"id": 1, "image_path": "assets/images/blood_carousel1.jpg"},
-    {"id": 2, "image_path": "assets/images/blood_carousel.jpg"},
-    {"id": 3, "image_path": "assets/images/blood_carousel2l.jpg"},
+    {"id": 2, "image_path": "assets/images/blood_carousel2l.jpg"},
+    {"id": 3, "image_path": "assets/images/blood_pi1.jpg"},
+    {"id": 4, "image_path": "assets/images/blood_gi1.jpg"},
   ];
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
