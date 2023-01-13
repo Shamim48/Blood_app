@@ -178,9 +178,11 @@ class _SignUpState extends State<SignUp> {
         borderRadius: BorderRadius.circular(35),
         borderSide: BorderSide(color: Colors.grey),
       ),
+
       suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
     ),
     );
+
 
 
 
@@ -213,6 +215,7 @@ class _SignUpState extends State<SignUp> {
       suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
     ),
     );
+
 
 
     final email = TextFormField(
@@ -389,6 +392,7 @@ class _SignUpState extends State<SignUp> {
       ),
     ),
     );
+
 
 
     final lastdates = InkWell(
