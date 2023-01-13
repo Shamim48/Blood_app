@@ -53,7 +53,7 @@ class _ActivityPostListPageState extends State<ActivityPostListPage> {
 
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => Add_Activity_Post()), (route) => false);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Add_Activity_Post(),));
         },
         label: const Text('post'),
         icon: const Icon(Icons.add),
