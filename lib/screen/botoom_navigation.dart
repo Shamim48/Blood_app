@@ -29,13 +29,12 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _pageController=PageController(initialPage: 2);
+    _pageController=PageController(initialPage: 1);
     _screenList=[
       SearchPage(),
-      ActivityPostListPage(),
       HomePage(),
       BloodPostListPage(),
-      Profile(isDonner: false,donnerPhone: FirebaseAuth.instance.currentUser!.phoneNumber,)    ];
+      Profile(isDonner: false,donnerPhone: FirebaseAuth.instance.currentUser!.phoneNumber,) ];
   }
   _setPage(int index){
     setState(() {
@@ -65,9 +64,9 @@ class _DashBoardState extends State<DashBoard> {
             children: [
               BottomNavItem(icon: Icons.search, isSelect: _pageIndex==0, onTap:()=> _setPage(0)),
               // BottomNavItem(icon: Icons.local_activity, isSelect: _pageIndex==1, onTap:()=> _setPage(1)),
-              BottomNavItem(icon: Icons.home, isSelect: _pageIndex==2, onTap:()=> _setPage(2)),
-              BottomNavItem(icon: Icons.edit, isSelect: _pageIndex==3, onTap:()=> _setPage(3)),
-              BottomNavItem(icon: Icons.person, isSelect: _pageIndex==4, onTap:()=> _setPage(4)),
+              BottomNavItem(icon: Icons.home, isSelect: _pageIndex==1, onTap:()=> _setPage(1)),
+              BottomNavItem(icon: Icons.edit, isSelect: _pageIndex==2, onTap:()=> _setPage(2)),
+              BottomNavItem(icon: Icons.person, isSelect: _pageIndex==3, onTap:()=> _setPage(3)),
 
             ],
           ),
