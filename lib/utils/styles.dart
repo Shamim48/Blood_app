@@ -81,10 +81,10 @@ Container roundedLogo(double weight, double height, double padding, double borde
     decoration: BoxDecoration(
         color: ColorResources.WHITE,
         shape: BoxShape.circle,
-        border: Border.all(
+        /*border: Border.all(
           width: borderWeight,
           color: ColorResources.Border_color,
-        )
+        )*/
     ),
     child: Image.asset(Images.logo_edu,  ),
   );

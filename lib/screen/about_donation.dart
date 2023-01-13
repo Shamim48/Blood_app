@@ -81,6 +81,16 @@ class _AboutDonationState extends State<AboutDonation> {
                     child:  Image.asset("assets/images/helal_sir2.jpeg",fit: BoxFit.cover,)
                   ),
                 ),
+                SizedBox(height: 15,),
+                Text("'বর্তমান কমিটি বৃন্দঃ '",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                SizedBox(height: 0,),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: ClipRRect(
+                    child:  Image.asset("assets/images/committee.jpg",fit: BoxFit.cover,)
+                  ),
+                ),
+
               ],
             ),
           )
