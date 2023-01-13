@@ -177,13 +177,13 @@ class _SignUpState extends State<SignUp> {
               )
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
         ),
+        suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
       ),
     );
+
 
 
     final phone = Container(
@@ -211,11 +211,10 @@ class _SignUpState extends State<SignUp> {
               )
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
         ),
+        suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
       ),
     );
 
@@ -238,9 +237,7 @@ class _SignUpState extends State<SignUp> {
         labelStyle: TextStyle(color: Colors.grey,fontSize: 16),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(
-              color: ColorResources.COLOR_PRIMARY,
-            )
+            borderSide: BorderSide(color: ColorResources.COLOR_PRIMARY,)
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(35),
@@ -393,9 +390,8 @@ class _SignUpState extends State<SignUp> {
               )
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
         ),
       ),
     );
