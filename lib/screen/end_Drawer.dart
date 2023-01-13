@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:blood_app/model/donner_model.dart';
 import 'package:blood_app/screen/about_developer.dart';
 import 'package:blood_app/screen/login_screen.dart';
@@ -20,24 +22,26 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
   // String? id;
 
   String? user_Id = FirebaseAuth.instance.currentUser!.phoneNumber;
-  late DocumentSnapshot donnerDoc;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    ProfileCrud.singleDonner(user_Id);
   }
 
-  singleDonner() async {
-    donnerDoc = await ProfileCrud.readSingleDoner(id: user_Id);
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: FutureBuilder(
+        child:
+        FutureBuilder(
           builder: (context , snapshort){
-            if(snapshort.connectionState==ConnectionState.done){
-              return ListView(
+            try{if(snapshort.connectionState==ConnectionState.waiting){
+              return Center(child: CircularProgressIndicator(),);
+            }else {
+             return ListView(
                 children: [
                   Container(
                     height: 230,
@@ -53,7 +57,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: Image.network(
-                            donnerDoc[DonnerModel.IMAGE_ID],
+                            ProfileCrud.donnerDoc[DonnerModel.IMAGE_ID],
                             fit: BoxFit.cover,
                             height: 100,
                             width: 100,
@@ -63,14 +67,14 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                           height: 10,
                         ),
                         Text(
-                          donnerDoc[DonnerModel.NAME],
+                          ProfileCrud.donnerDoc[DonnerModel.NAME],
                           style: const TextStyle(fontSize: 24, color: Colors.white),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         Text(
-                          donnerDoc[DonnerModel.PHONE],
+                          ProfileCrud.donnerDoc[DonnerModel.PHONE],
                           style: const TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ],
@@ -86,7 +90,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
 
                     ),
                     title: Text(
-                      "Blood group : " + donnerDoc[DonnerModel.BLOOD_GROUP],
+                      "Blood group : " + ProfileCrud.donnerDoc[DonnerModel.BLOOD_GROUP],
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
@@ -96,7 +100,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                       color: Colors.red,
                     ),
                     title: Text(
-                      donnerDoc[DonnerModel.EMAIL],
+                      ProfileCrud.donnerDoc[DonnerModel.EMAIL],
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
@@ -106,7 +110,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                       color: Colors.red,
                     ),
                     title: Text(
-                      "Last blood donation : " + donnerDoc[DonnerModel.LAST_DONATE_TIME],
+                      "Last blood donation : " + ProfileCrud.donnerDoc[DonnerModel.LAST_DONATE_TIME],
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
@@ -116,7 +120,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                       color: Colors.red,
                     ),
                     title: Text(
-                      "How many times blood donate : " + donnerDoc[DonnerModel.BLOOD_DONAT_TETIME],
+                      "How many times blood donate : " + ProfileCrud.donnerDoc[DonnerModel.BLOOD_DONAT_TETIME],
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
@@ -140,19 +144,19 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                       style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
-                   ListTile(
-                    leading: const Icon(
-                      Icons.people_outlined,
-                      color: Colors.red,
-                    ),
-                    title: InkWell(onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AboutDeveloper(),));
-                    },
+                  ListTile(
+                      leading: const Icon(
+                        Icons.people_outlined,
+                        color: Colors.red,
+                      ),
+                      title: InkWell(onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => AboutDeveloper(),));
+                      },
                         child: const Text(
                           "About Developer",
                           style: TextStyle(color: Colors.black, fontSize: 16),
                         ),
-                    )
+                      )
                   ),
                   const ListTile(
                     leading: Icon(
@@ -183,11 +187,13 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                   ),
                 ],
               );
-            }else {
-              return const Center(child: CircularProgressIndicator());
             }
-          },
-          future: singleDonner(),
+          }catch(e){
+              print(e);
+              return Center(child: CircularProgressIndicator(),);
+            }
+          }
+         // future: singleDonner(),
         ));
   }
 }
