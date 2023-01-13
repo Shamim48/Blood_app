@@ -152,71 +152,70 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
 
-    final name = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.text,
-        controller: nameController,
-        style: TextStyle( color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "Name",
-          labelStyle: TextStyle(color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
+    final name = TextFormField(
+      keyboardType: TextInputType.text,
+      controller: nameController,
+      style: TextStyle( color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "Name",
+        labelStyle: TextStyle(color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(35),
           borderSide: BorderSide(color: Colors.grey),
         ),
-        suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
-      ),
-    ));
-
-
-
-    final phone = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.number,
-        controller: phoneController,
-        style: TextStyle( color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "Phone Number",
-          labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
+        border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: ColorResources.COLOR_PRIMARY,
+            )
+        ),
+        focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(35),
+        borderSide: BorderSide(color: Colors.grey),
+      ),
+
+      suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
+    ),
+    );
+
+
+
+
+    final phone = TextFormField(
+      keyboardType: TextInputType.number,
+      controller: phoneController,
+      style: TextStyle( color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "Phone Number",
+        labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(35),
           borderSide: BorderSide(color: Colors.grey),
         ),
-        suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(35),
+            borderSide: BorderSide(
+              color: ColorResources.COLOR_PRIMARY,
+            )
+        ),
+        focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(35),
+        borderSide: BorderSide(color: Colors.grey),
       ),
-    ));
+      suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
+    ),
+    );
+
 
 
     final email = TextFormField(
@@ -365,36 +364,35 @@ class _SignUpState extends State<SignUp> {
     );
 
 
-    final timedonar = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.number,
-        controller: timeDonarController,
-        style: TextStyle( color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "How many time donated?",
-          labelStyle: TextStyle(color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
+    final timedonar = TextFormField(
+      keyboardType: TextInputType.number,
+      controller: timeDonarController,
+      style: TextStyle( color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "How many time donated?",
+        labelStyle: TextStyle(color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(35),
           borderSide: BorderSide(color: Colors.grey),
         ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(35),
+            borderSide: BorderSide(
+              color: ColorResources.COLOR_PRIMARY,
+            )
+        ),
+        focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(35),
+        borderSide: BorderSide(color: Colors.grey),
       ),
-    ));
+    ),
+    );
+
 
 
     final lastdates = InkWell(
@@ -555,41 +553,8 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-    // final union = Container(
-    //   height: 50,
-    //   width: MediaQuery.of(context).size.width,
-    //   decoration: BoxDecoration(
-    //     border: Border.all(width: 1, color: Colors.grey),
-    //     borderRadius: BorderRadius.circular(40),
-    //   ),
-    //   child: Padding(
-    //     padding: const EdgeInsets.only(left: 15, right: 15),
-    //     child: DropdownButton(
-    //       hint: Text("Union", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
-    //       icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
-    //       iconSize: 30,
-    //       isExpanded: true,
-    //       underline: SizedBox(),
-    //       style: TextStyle(
-    //           color: Colors.black,
-    //           fontSize: 18,
-    //           fontWeight: FontWeight.w500
-    //       ),
-    //       value: unionChoise,
-    //       onChanged: (value){
-    //         setState(() {
-    //           unionChoise = value as String?;
-    //         });
-    //       },
-    //       items: Union.map((valueItem){
-    //         return DropdownMenuItem(
-    //           value: valueItem,
-    //           child: Text(valueItem),
-    //         );
-    //       }).toList(),
-    //     ),
-    //   ),
-    // );
+
+
     final registration = InkWell(
       onTap: () async {
         if(file==null){
@@ -625,52 +590,54 @@ class _SignUpState extends State<SignUp> {
         child: Text("Registation Now",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),),
       ),
     );
-    final skipp = Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        TextButton(
-            onPressed: (){
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));
-            },
-            child: TextButton(onPressed: (){
-            },
-                child: Text("Skip", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),)
-            )),
-      ],
-    );
+
+
+    // final skipp = Row(
+    //   mainAxisAlignment: MainAxisAlignment.end,
+    //   children: [
+    //     TextButton(
+    //         onPressed: (){
+    //           // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));
+    //         },
+    //         child: TextButton(onPressed: (){
+    //         },
+    //             child: Text("Skip", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),)
+    //         )),
+    //   ],
+    // );
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Container(
-          height: 80,
-          width: 80,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(50)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: ClipRRect(
-              child: Image.asset(
-                "assets/images/fci_blood_donation_logo.png",fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-        leadingWidth: 80,
-        toolbarHeight: 80,
-        title: const Text("SIGN UP",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   leading: Container(
+      //     height: 80,
+      //     width: 80,
+      //     decoration: const BoxDecoration(
+      //       borderRadius: BorderRadius.all(Radius.circular(50)),
+      //     ),
+      //     child: Padding(
+      //       padding: const EdgeInsets.all(8),
+      //       child: ClipRRect(
+      //         child: Image.asset(
+      //           "assets/images/fci_blood_donation_logo.png",fit: BoxFit.cover,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      //   leadingWidth: 80,
+      //   toolbarHeight: 80,
+      //   title: const Text("SIGN UP",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
+      //   centerTitle: true,
+      // ),
       resizeToAvoidBottomInset: false,
       body: ListView(
         children: [
-      /*    Container(
+          Container(
             height: 60,
             width: MediaQuery.of(context).size.width,
             color: Colors.deepPurple,
             child: Center(child: Text("SingUp", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),)),
-          ),*/
+          ),
           SizedBox(height: 20,),
 
           Center(
@@ -807,8 +774,8 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(height: 20,),
 
                   //................... Skip..................
-                  skipp,
-                  SizedBox(height: 20,),
+                  // skipp,
+                  // SizedBox(height: 20,),
 
                 ],
               ),
@@ -934,6 +901,7 @@ List DistrictItem = [
 List Upazilas = [
   "Feni Sadar",
   "Chagol Naiya",
+  "Fulgazi",
   "Porshuram",
   "Sunagazi",
   "Dagonbuiya",
