@@ -1,4 +1,6 @@
 import 'package:blood_app/model/division_model.dart';
+import 'package:blood_app/provider/division_provider.dart';
+import 'package:blood_app/provider/theme_provider.dart';
 import 'package:blood_app/screen/blood_post_listpage.dart';
 import 'package:blood_app/screen/splashscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,11 +8,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => DivisionProvider()),
+      ChangeNotifierProvider(create: (_) => ThemeProvider()),
+    ],
+    child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {

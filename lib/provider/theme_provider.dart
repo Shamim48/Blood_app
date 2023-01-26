@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider with ChangeNotifier {
-   SharedPreferences sharedPreferences;
-  ThemeProvider({required this.sharedPreferences}) {
+  late SharedPreferences sharedPreferences;
+  ThemeProvider(/*{required this.sharedPreferences}*/) {
     _loadCurrentTheme();
   }
 

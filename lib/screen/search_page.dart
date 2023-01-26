@@ -1,11 +1,14 @@
 
 import 'package:blood_app/model/donner_model.dart';
+import 'package:blood_app/provider/division_provider.dart';
 import 'package:blood_app/screen/profile.dart';
 import 'package:blood_app/screen/signup.dart';
+import 'package:blood_app/utils/dimensions.dart';
 import 'package:blood_app/utils/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 import '../utils/color_resources.dart';
@@ -42,6 +45,13 @@ class _SearchPageState extends State<SearchPage> {
   String? upazilasChoise;
 
   String bloodGroup="";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<DivisionProvider>(context, listen: false).getDivisionData();
+  }
 
 
   @override
@@ -82,6 +92,68 @@ class _SearchPageState extends State<SearchPage> {
         ),
       ),
     );
+
+    var div= Container(
+      margin: EdgeInsets.only(left: 5),
+      width: MediaQuery.of(context).size.width/2.50-15,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          Text('  Divistion:', style: LatoMedium.copyWith(
+              color: ColorResources.BLACK,
+              fontSize: Dimensions.FONT_SIZE_DEFAULT),),
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          Consumer<DivisionProvider>(
+            builder: (context, divisionProvider, child) =>
+            divisionProvider.divisionList != null ? divisionProvider.divisionList!.length > 0 ? Container(
+                height: 40,
+                padding: EdgeInsets.only(left: 15),
+                decoration: textFieldDecoration(),
+                child: DropdownButton<String>(
+                  underline: SizedBox(),
+                  isExpanded: true,
+                  dropdownColor: ColorResources.WHITE,
+                  icon: Icon(
+                      CupertinoIcons.chevron_forward, size: 20,
+                      color: ColorResources.getHintColor(context)),
+                  hint: Text('Select Division',
+                      style: LatoRegular.copyWith(
+                          color: ColorResources.BLACK,
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT)),
+                  value: divisionProvider.divisionPossition == -1 ? null : divisionProvider
+                      .divisionList![divisionProvider.divisionPossition],
+                  items: divisionProvider.divisionList!.map((
+                      String divName) {
+                    return DropdownMenuItem<String>(
+                      value: divName,
+                      child: Text(divName,
+                          style: LatoRegular.copyWith(
+                              color: ColorResources.BLACK,
+                              fontSize: Dimensions
+                                  .FONT_SIZE_DEFAULT),
+                          overflow: TextOverflow.ellipsis),
+                    );
+                  }).toList(),
+                  onChanged: (String? divisionData){
+                    int index = divisionProvider.divisionList!.indexOf(divisionData!);
+                    divisionProvider.setDivisionPosition(index);
+                    divisionProvider.setDivision(divisionProvider.divisionList![index]);
+                  },
+
+                )) : Container(
+                width: MediaQuery.of(context).size.width/2.50-15,
+                height: 40,
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(left:10),
+                decoration: textFieldDecoration(),
+                child: Text('No Division Yet!')) : Center(
+                child: CupertinoActivityIndicator()),
+          ),
+        ],
+      ),
+    );
+
     final distric = Container(
       height: 40,
       width: MediaQuery.of(context).size.width/2.5,
@@ -212,7 +284,8 @@ class _SearchPageState extends State<SearchPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        division,
+                       // division,
+                        div,
                         SizedBox(width: 10,),
                         distric
                       ],
