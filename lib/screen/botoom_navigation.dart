@@ -1,4 +1,5 @@
 
+import 'package:blood_app/model/division.dart';
 import 'package:blood_app/screen/about_donation.dart';
 import 'package:blood_app/screen/activity_post_ListPage.dart';
 import 'package:blood_app/screen/blood_post_listpage.dart';
@@ -26,6 +27,9 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    DivisionList divisionList=DivisionList();
+    divisionList.retrieveDivisionData();
+    divisionList.retrieveDistrictData("1");
     _pageController=PageController(initialPage: 2);
     _screenList=[
       SearchPage(),

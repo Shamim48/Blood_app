@@ -1,21 +1,33 @@
+import 'package:blood_app/model/districs_model.dart';
+import 'package:blood_app/model/division_model.dart';
 import 'package:blood_app/repository/division_repo.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 
 class DivisionProvider with ChangeNotifier{
   DivisionRepo divisionRepo=DivisionRepo();
 
-  List<String> _divisionList=[];
-  List<String> get divisionList=>_divisionList;
+ // List<String> _divisionList=[];
+ // List<String> get divisionList=>_divisionList;
+
   String _divisionValue="";
   String get divisionValue=>_divisionValue;
 
   int _divisionPosition=-1;
   int get divisionPossition=>_divisionPosition;
 
-  getDivisionData() async{
+   String _disValue="";
+  String get disValue=>_disValue;
+
+  int _disPosition=-1;
+  int get disPossition=>_disPosition;
+
+
+
+  /*getDivisionData() async{
     _divisionList= await divisionRepo.getDivision();
     notifyListeners();
-  }
+  }*/
 
   setDivision(String division){
     _divisionValue=division;
@@ -24,5 +36,45 @@ class DivisionProvider with ChangeNotifier{
   setDivisionPosition(int divisionPosition){
     _divisionPosition=divisionPosition;
     notifyListeners();
+  }
+
+ setdis(String dis){
+    _disValue=dis;
+    notifyListeners();
+  }
+  setDisPosition(int disPosition){
+    _disPosition=disPosition;
+    notifyListeners();
+  }
+
+
+  List<DivisionModel> _divList=[];
+  List<DivisionModel> get divList=>_divList;
+
+  List<DistricsModel> _disList=[];
+  List<DistricsModel> get disList=>_disList;
+
+
+
+  var divisionRef = FirebaseDatabase.instance.ref();
+  void retrieveDivisionData() {
+    divisionRef.child("division").onChildAdded.listen((data) {
+      DivisionModel divisionModel = DivisionModel.fromJson(data.snapshot.value as Map);
+      _divList.add(divisionModel);
+      print("Division List:");
+      print(_divList);
+      notifyListeners();
+    });
+  }
+
+  void retrieveDistrictData(String divId) {
+    _disList.clear();
+    divisionRef.child("districts").orderByChild("division_id").equalTo(divId).onChildAdded.listen((data) {
+      DistricsModel disModel = DistricsModel.fromJson(data.snapshot.value as Map);
+      _disList.add(disModel);
+      print("Districts  List:");
+      print(_disList);
+      notifyListeners();
+    });
   }
 }

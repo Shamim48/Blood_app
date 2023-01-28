@@ -1,3 +1,8 @@
+
+class DivisionResponse{
+
+}
+
 class DivisionModel {
   DivisionModel({
     required this.id,
@@ -10,7 +15,7 @@ class DivisionModel {
   late final String bnName;
   late final String url;
 
-  DivisionModel.fromJson(Map<String, dynamic> json){
+  DivisionModel.fromJson(Map<dynamic, dynamic> json){
     id = json['id'];
     name = json['name'];
     bnName = json['bn_name'];
@@ -25,4 +30,11 @@ class DivisionModel {
     _data['url'] = url;
     return _data;
   }
+
+  @override
+  String toString() {
+    return 'DivisionModel{id: $id, name: $name, bnName: $bnName, url: $url}';
+  }
+
+
 }

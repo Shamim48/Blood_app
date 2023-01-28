@@ -16,7 +16,7 @@ class DistricsModel {
   late final String lon;
   late final String url;
 
-  DistricsModel.fromJson(Map<String, dynamic> json){
+  DistricsModel.fromJson(Map<dynamic, dynamic> json){
     id = json['id'];
     divisionId = json['division_id'];
     name = json['name'];
@@ -36,5 +36,10 @@ class DistricsModel {
     _data['lon'] = lon;
     _data['url'] = url;
     return _data;
+  }
+
+  @override
+  String toString() {
+    return 'DistricsModel{id: $id, divisionId: $divisionId, name: $name, bnName: $bnName, lat: $lat, lon: $lon, url: $url}';
   }
 }

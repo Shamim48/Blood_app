@@ -1,4 +1,6 @@
 
+import 'package:blood_app/model/districs_model.dart';
+import 'package:blood_app/model/division_model.dart';
 import 'package:blood_app/model/donner_model.dart';
 import 'package:blood_app/provider/division_provider.dart';
 import 'package:blood_app/screen/profile.dart';
@@ -50,7 +52,7 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<DivisionProvider>(context, listen: false).getDivisionData();
+    Provider.of<DivisionProvider>(context, listen: false).retrieveDivisionData();
   }
 
 
@@ -106,11 +108,11 @@ class _SearchPageState extends State<SearchPage> {
           SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
           Consumer<DivisionProvider>(
             builder: (context, divisionProvider, child) =>
-            divisionProvider.divisionList != null ? divisionProvider.divisionList!.length > 0 ? Container(
+            divisionProvider.divList != null ? divisionProvider.divList!.length > 0 ? Container(
                 height: 40,
                 padding: EdgeInsets.only(left: 15),
                 decoration: textFieldDecoration(),
-                child: DropdownButton<String>(
+                child: DropdownButton<DivisionModel>(
                   underline: SizedBox(),
                   isExpanded: true,
                   dropdownColor: ColorResources.WHITE,
@@ -122,12 +124,12 @@ class _SearchPageState extends State<SearchPage> {
                           color: ColorResources.BLACK,
                           fontSize: Dimensions.FONT_SIZE_DEFAULT)),
                   value: divisionProvider.divisionPossition == -1 ? null : divisionProvider
-                      .divisionList![divisionProvider.divisionPossition],
-                  items: divisionProvider.divisionList!.map((
-                      String divName) {
-                    return DropdownMenuItem<String>(
+                      .divList![divisionProvider.divisionPossition],
+                  items: divisionProvider.divList!.map((
+                      DivisionModel divName) {
+                    return DropdownMenuItem<DivisionModel>(
                       value: divName,
-                      child: Text(divName,
+                      child: Text(divName.name,
                           style: LatoRegular.copyWith(
                               color: ColorResources.BLACK,
                               fontSize: Dimensions
@@ -135,10 +137,11 @@ class _SearchPageState extends State<SearchPage> {
                           overflow: TextOverflow.ellipsis),
                     );
                   }).toList(),
-                  onChanged: (String? divisionData){
-                    int index = divisionProvider.divisionList!.indexOf(divisionData!);
+                  onChanged: (DivisionModel? divisionData){
+                    int index = divisionProvider.divList!.indexOf(divisionData!);
                     divisionProvider.setDivisionPosition(index);
-                    divisionProvider.setDivision(divisionProvider.divisionList![index]);
+                    divisionProvider.setDivision(divisionData.name);
+                    divisionProvider.retrieveDistrictData(divisionData.id);
                   },
 
                 )) : Container(
@@ -155,38 +158,63 @@ class _SearchPageState extends State<SearchPage> {
     );
 
     final distric = Container(
-      height: 40,
-      width: MediaQuery.of(context).size.width/2.5,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.grey),
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
-        child: DropdownButton(
-          hint: Text("District", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
-          icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
-          iconSize: 30,
-          isExpanded: true,
-          underline: SizedBox(),
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
+      margin: EdgeInsets.only(left: 5),
+      width: MediaQuery.of(context).size.width/2.50-15,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          Text('  District:', style: LatoMedium.copyWith(
+              color: ColorResources.BLACK,
+              fontSize: Dimensions.FONT_SIZE_DEFAULT),),
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          Consumer<DivisionProvider>(
+            builder: (context, divisionProvider, child) =>
+            divisionProvider.disList != null ? divisionProvider.disList!.length > 0 ? Container(
+                height: 40,
+                padding: EdgeInsets.only(left: 15),
+                decoration: textFieldDecoration(),
+                child: DropdownButton<DistricsModel>(
+                  underline: SizedBox(),
+                  isExpanded: true,
+                  dropdownColor: ColorResources.WHITE,
+                  icon: Icon(
+                      CupertinoIcons.chevron_forward, size: 20,
+                      color: ColorResources.getHintColor(context)),
+                  hint: Text('Select District',
+                      style: LatoRegular.copyWith(
+                          color: ColorResources.BLACK,
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT)),
+                  value: divisionProvider.disPossition == -1 ? null : divisionProvider
+                      .disList![divisionProvider.disPossition],
+                  items: divisionProvider.disList!.map((
+                      DistricsModel divName) {
+                    return DropdownMenuItem<DistricsModel>(
+                      value: divName,
+                      child: Text(divName.name,
+                          style: LatoRegular.copyWith(
+                              color: ColorResources.BLACK,
+                              fontSize: Dimensions
+                                  .FONT_SIZE_DEFAULT),
+                          overflow: TextOverflow.ellipsis),
+                    );
+                  }).toList(),
+                  onChanged: (DistricsModel? disData){
+                    int index = divisionProvider.disList!.indexOf(disData!);
+                    divisionProvider.setDisPosition(index);
+                    divisionProvider.setdis(disData.name);
+                  },
+
+                )) : Container(
+                width: MediaQuery.of(context).size.width/2.50-15,
+                height: 40,
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(left:10),
+                decoration: textFieldDecoration(),
+                child: Text('No District Yet!')) : Center(
+                child: CupertinoActivityIndicator()),
           ),
-          value: districtChoise,
-          onChanged: (value){
-            setState(() {
-              districtChoise = value as String?;
-            });
-          },
-          items: DistrictItem.map((valueItem){
-            return DropdownMenuItem(
-              value: valueItem,
-              child: Text(valueItem),
-            );
-          }).toList(),
-        ),
+        ],
       ),
     );
     final upozilas = Container(
