@@ -1,5 +1,5 @@
-class DistricsModel {
-  DistricsModel({
+class DistrictsModel {
+  DistrictsModel({
     required this.id,
     required this.divisionId,
     required this.name,
@@ -16,7 +16,7 @@ class DistricsModel {
   late final String lon;
   late final String url;
 
-  DistricsModel.fromJson(Map<dynamic, dynamic> json){
+  DistrictsModel.fromJson(Map<dynamic, dynamic> json){
     id = json['id'];
     divisionId = json['division_id'];
     name = json['name'];

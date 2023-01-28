@@ -30,6 +30,7 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _pageController=PageController(initialPage: 1);
     _screenList=[
       SearchPage(),
       HomePage(),

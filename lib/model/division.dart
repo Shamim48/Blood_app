@@ -7,8 +7,8 @@ class DivisionList{
   List<DivisionModel> _divList=[];
   List<DivisionModel> get divList=>_divList;
 
-  List<DistricsModel> _disList=[];
-  List<DistricsModel> get disList=>_disList;
+  List<DistrictsModel> _disList=[];
+  List<DistrictsModel> get disList=>_disList;
 
 
 
@@ -24,7 +24,7 @@ class DivisionList{
 
   void retrieveDistrictData(String divId) {
     divisionRef.child("districts").orderByChild("division_id").equalTo("1").onChildAdded.listen((data) {
-      DistricsModel disModel = DistricsModel.fromJson(data.snapshot.value as Map);
+      DistrictsModel disModel = DistrictsModel.fromJson(data.snapshot.value as Map);
       _disList.add(disModel);
       print("Districts  List:");
       print(_disList);

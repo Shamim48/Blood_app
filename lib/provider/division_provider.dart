@@ -51,14 +51,14 @@ class DivisionProvider with ChangeNotifier{
   List<DivisionModel> _divList=[];
   List<DivisionModel> get divList=>_divList;
 
-  List<DistricsModel> _disList=[];
-  List<DistricsModel> get disList=>_disList;
+  List<DistrictsModel> _disList=[];
+  List<DistrictsModel> get disList=>_disList;
 
 
 
-  var divisionRef = FirebaseDatabase.instance.ref();
+  var rootRef = FirebaseDatabase.instance.ref();
   void retrieveDivisionData() {
-    divisionRef.child("division").onChildAdded.listen((data) {
+    rootRef.child("division").onChildAdded.listen((data) {
       DivisionModel divisionModel = DivisionModel.fromJson(data.snapshot.value as Map);
       _divList.add(divisionModel);
       print("Division List:");
@@ -69,12 +69,16 @@ class DivisionProvider with ChangeNotifier{
 
   void retrieveDistrictData(String divId) {
     _disList.clear();
-    divisionRef.child("districts").orderByChild("division_id").equalTo(divId).onChildAdded.listen((data) {
-      DistricsModel disModel = DistricsModel.fromJson(data.snapshot.value as Map);
+    rootRef.child("districts").orderByChild("division_id").equalTo(divId).onChildAdded.listen((data) {
+      DistrictsModel disModel = DistrictsModel.fromJson(data.snapshot.value as Map);
       _disList.add(disModel);
       print("Districts  List:");
       print(_disList);
       notifyListeners();
     });
+  }
+
+  void getUpazila(String disId){
+
   }
 }
