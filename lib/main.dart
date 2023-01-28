@@ -1,6 +1,7 @@
 import 'package:blood_app/model/division_model.dart';
 import 'package:blood_app/provider/division_provider.dart';
 import 'package:blood_app/provider/theme_provider.dart';
+import 'package:blood_app/provider/upazila_provider.dart';
 import 'package:blood_app/screen/blood_post_listpage.dart';
 import 'package:blood_app/screen/splashscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +18,7 @@ void main() async {
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => DivisionProvider()),
       ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ChangeNotifierProvider(create: (_) => UpazilaProvider()),
     ],
     child: MyApp(),));
 }

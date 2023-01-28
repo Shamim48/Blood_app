@@ -2,7 +2,9 @@
 import 'package:blood_app/model/districs_model.dart';
 import 'package:blood_app/model/division_model.dart';
 import 'package:blood_app/model/donner_model.dart';
+import 'package:blood_app/model/upazila_model.dart';
 import 'package:blood_app/provider/division_provider.dart';
+import 'package:blood_app/provider/upazila_provider.dart';
 import 'package:blood_app/screen/profile.dart';
 import 'package:blood_app/screen/signup.dart';
 import 'package:blood_app/utils/dimensions.dart';
@@ -142,7 +144,8 @@ class _SearchPageState extends State<SearchPage> {
                     divisionProvider.setDivisionPosition(index);
                     divisionProvider.setDivision(divisionData.name);
                     divisionProvider.retrieveDistrictData(divisionData.id);
-                  },
+                    divisionProvider.setDisPosition(-1);
+                    },
 
                 )) : Container(
                 width: MediaQuery.of(context).size.width/2.50-15,
@@ -174,7 +177,7 @@ class _SearchPageState extends State<SearchPage> {
                 height: 40,
                 padding: EdgeInsets.only(left: 15),
                 decoration: textFieldDecoration(),
-                child: DropdownButton<DistricsModel>(
+                child: DropdownButton<DistrictsModel>(
                   underline: SizedBox(),
                   isExpanded: true,
                   dropdownColor: ColorResources.WHITE,
@@ -188,8 +191,8 @@ class _SearchPageState extends State<SearchPage> {
                   value: divisionProvider.disPossition == -1 ? null : divisionProvider
                       .disList![divisionProvider.disPossition],
                   items: divisionProvider.disList!.map((
-                      DistricsModel divName) {
-                    return DropdownMenuItem<DistricsModel>(
+                      DistrictsModel divName) {
+                    return DropdownMenuItem<DistrictsModel>(
                       value: divName,
                       child: Text(divName.name,
                           style: LatoRegular.copyWith(
@@ -199,10 +202,15 @@ class _SearchPageState extends State<SearchPage> {
                           overflow: TextOverflow.ellipsis),
                     );
                   }).toList(),
-                  onChanged: (DistricsModel? disData){
+                  onChanged: (DistrictsModel? disData){
                     int index = divisionProvider.disList!.indexOf(disData!);
                     divisionProvider.setDisPosition(index);
                     divisionProvider.setdis(disData.name);
+                   setState(() {
+                     Provider.of<UpazilaProvider>(context, listen: false).getUpazilaList(disData.id);
+                     Provider.of<UpazilaProvider>(context, listen: false).setUpazilaPosition(-1);
+
+                   });
                   },
 
                 )) : Container(
@@ -218,38 +226,66 @@ class _SearchPageState extends State<SearchPage> {
       ),
     );
     final upozilas = Container(
-      height: 40,
-      width: MediaQuery.of(context).size.width/2.5,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.grey),
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
-        child: DropdownButton(
-          hint: Text("Upazilas", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
-          icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
-          iconSize: 30,
-          isExpanded: true,
-          underline: SizedBox(),
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w500
+      margin: EdgeInsets.only(left: 5),
+      width: MediaQuery.of(context).size.width/2.50-15,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          Text('  Upazila:', style: LatoMedium.copyWith(
+              color: ColorResources.BLACK,
+              fontSize: Dimensions.FONT_SIZE_DEFAULT),),
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          Consumer<UpazilaProvider>(
+            builder: (context, upazilaProvider, child) =>
+            upazilaProvider.upazilaList != null ? upazilaProvider.upazilaList!.length > 0 ? Container(
+                height: 40,
+                padding: EdgeInsets.only(left: 15),
+                decoration: textFieldDecoration(),
+                child: DropdownButton<UpazilaModel>(
+                  underline: SizedBox(),
+                  isExpanded: true,
+                  dropdownColor: ColorResources.WHITE,
+                  icon: Icon(
+                      CupertinoIcons.chevron_forward, size: 20,
+                      color: ColorResources.getHintColor(context)),
+                  hint: Text('Select Upazila',
+                      style: LatoRegular.copyWith(
+                          color: ColorResources.BLACK,
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT)),
+                  value: upazilaProvider.upaPossition == -1 ? null : upazilaProvider
+                      .upazilaList![upazilaProvider.upaPossition],
+                  items: upazilaProvider.upazilaList!.map((
+                      UpazilaModel upazila) {
+                    return DropdownMenuItem<UpazilaModel>(
+                      value: upazila,
+                      child: Text(upazila.name,
+                          style: LatoRegular.copyWith(
+                              color: ColorResources.BLACK,
+                              fontSize: Dimensions
+                                  .FONT_SIZE_DEFAULT),
+                          overflow: TextOverflow.ellipsis),
+                    );
+                  }).toList(),
+                  onChanged: (UpazilaModel? upaData){
+                    int index = upazilaProvider.upazilaList!.indexOf(upaData!);
+                    upazilaProvider.setUpazilaPosition(index);
+                    upazilaProvider.setUpazilaId(upaData.id);
+                    setState(() {
+
+                    });
+                  },
+
+                )) : Container(
+                width: MediaQuery.of(context).size.width/2.50-15,
+                height: 40,
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(left:10),
+                decoration: textFieldDecoration(),
+                child: Text('No Upazila Yet!')) : Center(
+                child: CupertinoActivityIndicator()),
           ),
-          value: upazilasChoise,
-          onChanged: (value){
-            setState(() {
-              upazilasChoise = value as String?;
-            });
-          },
-          items: Upazilas.map((valueItem){
-            return DropdownMenuItem(
-              value: valueItem,
-              child: Text(valueItem),
-            );
-          }).toList(),
-        ),
+        ],
       ),
     );
     return SafeArea(
@@ -325,7 +361,69 @@ class _SearchPageState extends State<SearchPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(width: 10,),
-                        upozilas,
+                        Container(
+                          margin: EdgeInsets.only(left: 5),
+                          width: MediaQuery.of(context).size.width/2.50-15,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                              Text('  Upazila:', style: LatoMedium.copyWith(
+                                  color: ColorResources.BLACK,
+                                  fontSize: Dimensions.FONT_SIZE_DEFAULT),),
+                              SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                              Consumer<UpazilaProvider>(
+                                builder: (context, upazilaProvider, child) =>
+                                upazilaProvider.upazilaList != null ? upazilaProvider.upazilaList!.length > 0 ? Container(
+                                    height: 40,
+                                    padding: EdgeInsets.only(left: 15),
+                                    decoration: textFieldDecoration(),
+                                    child: DropdownButton<UpazilaModel>(
+                                      underline: SizedBox(),
+                                      isExpanded: true,
+                                      dropdownColor: ColorResources.WHITE,
+                                      icon: Icon(
+                                          CupertinoIcons.chevron_forward, size: 20,
+                                          color: ColorResources.getHintColor(context)),
+                                      hint: Text('Select Upazila',
+                                          style: LatoRegular.copyWith(
+                                              color: ColorResources.BLACK,
+                                              fontSize: Dimensions.FONT_SIZE_DEFAULT)),
+                                      value: upazilaProvider.upaPossition == -1 ? null : upazilaProvider
+                                          .upazilaList![upazilaProvider.upaPossition],
+                                      items: upazilaProvider.upazilaList!.map((
+                                          UpazilaModel upazila) {
+                                        return DropdownMenuItem<UpazilaModel>(
+                                          value: upazila,
+                                          child: Text(upazila.name,
+                                              style: LatoRegular.copyWith(
+                                                  color: ColorResources.BLACK,
+                                                  fontSize: Dimensions
+                                                      .FONT_SIZE_DEFAULT),
+                                              overflow: TextOverflow.ellipsis),
+                                        );
+                                      }).toList(),
+                                      onChanged: (UpazilaModel? upaData){
+                                        int index = upazilaProvider.upazilaList!.indexOf(upaData!);
+                                        upazilaProvider.setUpazilaPosition(index);
+                                        upazilaProvider.setUpazilaId(upaData.id);
+                                        setState(() {
+
+                                        });
+                                      },
+
+                                    )) : Container(
+                                    width: MediaQuery.of(context).size.width/2.50-15,
+                                    height: 40,
+                                    alignment: Alignment.center,
+                                    padding: EdgeInsets.only(left:10),
+                                    decoration: textFieldDecoration(),
+                                    child: Text('No Upazila Yet!')) : Center(
+                                    child: CupertinoActivityIndicator()),
+                              ),
+                            ],
+                          ),
+                        ),
                         SizedBox(width: 10,),
                         Expanded(child: Container())
 
