@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
         decoration:const BoxDecoration(
         ),
         child: Center(
-          child: roundedLogo(250, 250, 30, 5),
+          child: roundedLogo(250, 250, 30, 0),
         )
     );
   }

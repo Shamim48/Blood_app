@@ -276,7 +276,7 @@ class _SearchPageState extends State<SearchPage> {
           toolbarHeight: 80,
           title: const Text("FCI BLOOD BANK",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
           centerTitle: true,
-          actions: [
+         /* actions: [
             InkWell(
               onTap: () {
                 _scaffoldkey.currentState?.openEndDrawer();
@@ -290,13 +290,13 @@ class _SearchPageState extends State<SearchPage> {
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Image.asset(
-                    "assets/images/menu-bar.png",
+                    "assets/images/menus.png",
                     color: ColorResources.COLOR_PRIMARY,
                   ),
                 ),
               ),
             ),
-          ],
+          ],*/
         ),
 
         backgroundColor: Colors.white,
@@ -306,56 +306,7 @@ class _SearchPageState extends State<SearchPage> {
               padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
               child: Column(
                 children: [
-                /*  Row(
-                    children: [
-                      Container(
-                          height: 60,
-                          width: 60,
-                          child: Image.asset(
-                            "assets/images/blood-drop.png",
-                          )),
-                      Container(
-                        child: Expanded(
-                          child: Container(
-                            height: 45,
-                            width: 100,
-                            child: const Center(
-                                child: Text(
-                                  "Blood Search",
-                                  style: TextStyle(
-                                      fontSize: 25, fontWeight: FontWeight.bold),
-                                )),
-                          ),
-                        ),
-                      ),
-                      Builder(
-                        builder: (BuildContext context) {
-                          return Padding(
-                            padding: EdgeInsets.all(8),
-                            child: InkWell(
-                              onTap: () {
-                                _scaffoldkey.currentState?.openEndDrawer();
-                              },
-                              child: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: Image.asset(
-                                    "assets/images/menu-bar.png",
-                                    color: ColorResources.COLOR_PRIMARY,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),*/
+
                   Padding(
                     padding: const EdgeInsets.all(5),
                     child: Row(

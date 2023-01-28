@@ -67,7 +67,10 @@ class ProfileCrud {
     DocumentSnapshot documentSnapshot=await documentReferencer.get();
     return documentSnapshot;
   }
-
+  static late DocumentSnapshot donnerDoc;
+   static singleDonner(String? userPhone) async {
+    donnerDoc = await ProfileCrud.readSingleDoner(id: userPhone);
+  }
 
 
 

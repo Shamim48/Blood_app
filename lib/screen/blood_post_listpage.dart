@@ -49,12 +49,16 @@ class _ListPage extends State<BloodPostListPage> {
         centerTitle: true,
       ),
       resizeToAvoidBottomInset: false,
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddBloodPostPage(),));
-        },
-        backgroundColor: ColorResources.BLOOD_COLOR,
-        child: const Icon(Icons.edit),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 100),
+        child: FloatingActionButton(
+
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const AddBloodPostPage(),));
+          },
+          backgroundColor: ColorResources.BLOOD_COLOR,
+          child: const Icon(Icons.edit),
+        ),
       ),
       body: StreamBuilder(
         stream: collectionReference,

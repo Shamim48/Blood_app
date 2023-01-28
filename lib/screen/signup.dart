@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:blood_app/main.dart';
 import 'package:blood_app/screen/botoom_navigation.dart';
 import 'package:blood_app/screen/home_paage.dart';
+import 'package:blood_app/screen/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -52,7 +53,7 @@ class _SignUpState extends State<SignUp> {
   String? selectGender;
   String? selectBloodGroup;
   final TextEditingController timeDonarController = TextEditingController();
-  String lastdate = "What is the last date of blood donation?";
+  String lastdate = "Last donate date?";
   String? divisionChoose;
   String? districtChoise;
   String? upazilasChoise;
@@ -151,74 +152,76 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
 
-    final name = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.text,
-        controller: nameController,
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "Name",
-          labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
+    final name = TextFormField(
+      keyboardType: TextInputType.text,
+      controller: nameController,
+      style: TextStyle( color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "Name",
+        labelStyle: TextStyle(color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
         ),
-      ),
-    );
-    final phone = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.number,
-        controller: phoneController,
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "Phone Number",
-          labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
+        border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
+            borderSide: BorderSide(
+              color: ColorResources.COLOR_PRIMARY,
+            )
         ),
+        focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(35),
+        borderSide: BorderSide(color: Colors.grey),
       ),
+
+      suffixIcon: Icon(Icons.person, color: Colors.grey[700],),
+    ),
     );
+
+
+
+
+    final phone = TextFormField(
+      keyboardType: TextInputType.number,
+      controller: phoneController,
+      style: TextStyle( color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "Phone Number",
+        labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
+        ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(35),
+            borderSide: BorderSide(
+              color: ColorResources.COLOR_PRIMARY,
+            )
+        ),
+        focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(35),
+        borderSide: BorderSide(color: Colors.grey),
+      ),
+      suffixIcon: Icon(Icons.call, color: Colors.grey[700],),
+    ),
+    );
+
+
+
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       controller: emailController,
-      style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
+      style: TextStyle(color: Colors.black),
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
           return 'This field is required';
@@ -230,12 +233,10 @@ class _SignUpState extends State<SignUp> {
       },
       decoration: InputDecoration(
         labelText: "Email Address",
-        labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey,fontSize: 16),
+        labelStyle: TextStyle(color: Colors.grey,fontSize: 16),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(
-              color: ColorResources.COLOR_PRIMARY,
-            )
+            borderSide: BorderSide(color: ColorResources.COLOR_PRIMARY,)
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(35),
@@ -248,6 +249,8 @@ class _SignUpState extends State<SignUp> {
         suffixIcon: Icon(Icons.email, color: Colors.grey[700],),
       ),
     );
+
+
     final date = InkWell(
       onTap: () async {
         DateTime? dateTime = await getDateFromCalendar(context);
@@ -278,7 +281,7 @@ class _SignUpState extends State<SignUp> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(birthdate, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 16),),
+                  Text(birthdate, style: TextStyle( color: Colors.black,fontSize: 16),),
                   Icon(Icons.date_range, color: Colors.grey[700],),
                 ],
               ),
@@ -287,6 +290,8 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+
+
     final gender = Container(
       height: 50,
       width: MediaQuery.of(context).size.width,
@@ -297,7 +302,7 @@ class _SignUpState extends State<SignUp> {
       child: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: DropdownButton(
-          hint: Text("Select Gender", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),),
+          hint: Text("Select Gender", style: TextStyle(color: Colors.grey,),),
           icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
           iconSize: 30,
           isExpanded: true,
@@ -305,7 +310,6 @@ class _SignUpState extends State<SignUp> {
           style: TextStyle(
               color: Colors.black,
               fontSize: 18,
-              fontWeight: FontWeight.w500
           ),
           value: selectGender,
           onChanged: (value){
@@ -322,6 +326,8 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+
+
     final group = Container(
       height: 50,
       width: MediaQuery.of(context).size.width,
@@ -332,7 +338,7 @@ class _SignUpState extends State<SignUp> {
       child: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: DropdownButton(
-          hint: Text("Select Blood Group", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),),
+          hint: Text("Select Blood Group", style: TextStyle(color: Colors.grey,),),
           icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
           iconSize: 30,
           isExpanded: true,
@@ -340,7 +346,6 @@ class _SignUpState extends State<SignUp> {
           style: TextStyle(
               color: Colors.black,
               fontSize: 18,
-              fontWeight: FontWeight.w500
           ),
           value: selectBloodGroup,
           onChanged: (value){
@@ -357,37 +362,39 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-    final timedonar = Container(
-      height: 50,
-      child: TextFormField(
-        keyboardType: TextInputType.number,
-        controller: timeDonarController,
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-          labelText: "How many time donated?",
-          labelStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey,fontSize: 16),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(35),
-              borderSide: BorderSide(
-                color: ColorResources.COLOR_PRIMARY,
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
+
+
+    final timedonar = TextFormField(
+      keyboardType: TextInputType.number,
+      controller: timeDonarController,
+      style: TextStyle( color: Colors.black),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
+        }
+      },
+      decoration: InputDecoration(
+        labelText: "How many time donated?",
+        labelStyle: TextStyle(color: Colors.grey,fontSize: 16),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(35),
+          borderSide: BorderSide(color: Colors.grey),
         ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(35),
+            borderSide: BorderSide(
+              color: ColorResources.COLOR_PRIMARY,
+            )
+        ),
+        focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(35),
+        borderSide: BorderSide(color: Colors.grey),
       ),
+    ),
     );
+
+
+
     final lastdates = InkWell(
       onTap: () async {
         DateTime? dateTime = await getDateFromCalendar(context);
@@ -418,7 +425,7 @@ class _SignUpState extends State<SignUp> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(lastdate, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 16),),
+                  Text(lastdate, style: TextStyle(color: Colors.black,fontSize: 16),),
                   Icon(Icons.date_range, color: Colors.grey[700],),
                 ],
               ),
@@ -427,6 +434,8 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+
+
     final person = Container(
       height: 40,
       width: MediaQuery.of(context).size.width,
@@ -436,6 +445,8 @@ class _SignUpState extends State<SignUp> {
         ],
       ),
     );
+
+
     final division = Container(
       height: 50,
       width: MediaQuery.of(context).size.width,
@@ -446,7 +457,7 @@ class _SignUpState extends State<SignUp> {
       child: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: DropdownButton(
-          hint: Text("Division", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+          hint: Text("Division", style: TextStyle(color: Colors.grey,),),
           icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
           iconSize: 30,
           isExpanded: true,
@@ -454,7 +465,6 @@ class _SignUpState extends State<SignUp> {
           style: TextStyle(
               color: Colors.black,
               fontSize: 18,
-              fontWeight: FontWeight.w500
           ),
           value: divisionChoose,
           onChanged: (value){
@@ -471,6 +481,8 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+
+
     final distric = Container(
       height: 50,
       width: MediaQuery.of(context).size.width,
@@ -481,7 +493,7 @@ class _SignUpState extends State<SignUp> {
       child: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: DropdownButton(
-          hint: Text("District", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+          hint: Text("District", style: TextStyle(color: Colors.grey,),),
           icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
           iconSize: 30,
           isExpanded: true,
@@ -489,7 +501,6 @@ class _SignUpState extends State<SignUp> {
           style: TextStyle(
               color: Colors.black,
               fontSize: 18,
-              fontWeight: FontWeight.w500,
           ),
           value: districtChoise,
           onChanged: (value){
@@ -506,6 +517,8 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+
+
     final upozilas = Container(
       height: 50,
       width: MediaQuery.of(context).size.width,
@@ -516,7 +529,7 @@ class _SignUpState extends State<SignUp> {
       child: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: DropdownButton(
-          hint: Text("Upazilas", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+          hint: Text("Upazilas", style: TextStyle(color: Colors.grey,),),
           icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
           iconSize: 30,
           isExpanded: true,
@@ -524,7 +537,6 @@ class _SignUpState extends State<SignUp> {
           style: TextStyle(
               color: Colors.black,
               fontSize: 18,
-              fontWeight: FontWeight.w500
           ),
           value: upazilasChoise,
           onChanged: (value){
@@ -541,41 +553,8 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-    // final union = Container(
-    //   height: 50,
-    //   width: MediaQuery.of(context).size.width,
-    //   decoration: BoxDecoration(
-    //     border: Border.all(width: 1, color: Colors.grey),
-    //     borderRadius: BorderRadius.circular(40),
-    //   ),
-    //   child: Padding(
-    //     padding: const EdgeInsets.only(left: 15, right: 15),
-    //     child: DropdownButton(
-    //       hint: Text("Union", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
-    //       icon: Icon(Icons.arrow_drop_down, color: Colors.grey[700],),
-    //       iconSize: 30,
-    //       isExpanded: true,
-    //       underline: SizedBox(),
-    //       style: TextStyle(
-    //           color: Colors.black,
-    //           fontSize: 18,
-    //           fontWeight: FontWeight.w500
-    //       ),
-    //       value: unionChoise,
-    //       onChanged: (value){
-    //         setState(() {
-    //           unionChoise = value as String?;
-    //         });
-    //       },
-    //       items: Union.map((valueItem){
-    //         return DropdownMenuItem(
-    //           value: valueItem,
-    //           child: Text(valueItem),
-    //         );
-    //       }).toList(),
-    //     ),
-    //   ),
-    // );
+
+
     final registration = InkWell(
       onTap: () async {
         if(file==null){
@@ -611,18 +590,45 @@ class _SignUpState extends State<SignUp> {
         child: Text("Registation Now",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),),
       ),
     );
-    final skipp = Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        TextButton(
-            onPressed: (){
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));
-            },
-            child: Text("Skip >", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),)),
-      ],
-    );
+
+
+    // final skipp = Row(
+    //   mainAxisAlignment: MainAxisAlignment.end,
+    //   children: [
+    //     TextButton(
+    //         onPressed: (){
+    //           // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));
+    //         },
+    //         child: TextButton(onPressed: (){
+    //         },
+    //             child: Text("Skip", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),)
+    //         )),
+    //   ],
+    // );
 
     return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   leading: Container(
+      //     height: 80,
+      //     width: 80,
+      //     decoration: const BoxDecoration(
+      //       borderRadius: BorderRadius.all(Radius.circular(50)),
+      //     ),
+      //     child: Padding(
+      //       padding: const EdgeInsets.all(8),
+      //       child: ClipRRect(
+      //         child: Image.asset(
+      //           "assets/images/fci_blood_donation_logo.png",fit: BoxFit.cover,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      //   leadingWidth: 80,
+      //   toolbarHeight: 80,
+      //   title: const Text("SIGN UP",style: TextStyle(fontWeight: FontWeight.bold,color: ColorResources.BLOOD_COLOR,fontSize: 25),),
+      //   centerTitle: true,
+      // ),
       resizeToAvoidBottomInset: false,
       body: ListView(
         children: [
@@ -641,7 +647,7 @@ class _SignUpState extends State<SignUp> {
                   margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                   child: CircleAvatar(
                     radius: 71,
-                    backgroundColor: Colors.black,
+                    backgroundColor: ColorResources.BLOOD_COLOR,
                     child: CircleAvatar(
                       radius: 70,
                       backgroundImage: file == null ?
@@ -654,8 +660,8 @@ class _SignUpState extends State<SignUp> {
                     left: 110,
                     child: RawMaterialButton(
                       elevation: 10,
-                    fillColor: ColorResources.COLOR_PRIMARY,
-                    child: Icon(Icons.add_a_photo),
+                    fillColor: Colors.deepPurple,
+                    child: Icon(Icons.add_a_photo_outlined,color: Colors.white,),
                     padding: EdgeInsets.all(15),
                     shape: CircleBorder(),
                     onPressed: (){
@@ -768,8 +774,8 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(height: 20,),
 
                   //................... Skip..................
-                  skipp,
-                  SizedBox(height: 20,),
+                  // skipp,
+                  // SizedBox(height: 20,),
 
                 ],
               ),
@@ -848,20 +854,18 @@ Future<DateTime?> getDateFromCalendar(BuildContext context) async {
 }
 
 List GenderItem = [
-  "Select Gender",
   "Male",
   "Female"
 ];
 
 List BloodGroup = [
-  "Select Blood Group",
   "A+",
-  "A-",
   "B+",
-  "B-",
-  "O+",
-  "O-",
   "AB+",
+  "O+",
+  "A-",
+  "B-",
+  "O-",
   "AB-",
 ];
 
@@ -897,6 +901,7 @@ List DistrictItem = [
 List Upazilas = [
   "Feni Sadar",
   "Chagol Naiya",
+  "Fulgazi",
   "Porshuram",
   "Sunagazi",
   "Dagonbuiya",

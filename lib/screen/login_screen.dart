@@ -59,22 +59,22 @@ class _LogingPageState extends State<LogingPage> {
         children: [
           Column(
             children: [
-              SizedBox(height: 150,),
-              Text("Welecome", style: TextStyle(fontWeight: FontWeight.bold,fontSize:50, )),
-              Text("FCI BLOOD BANCK", style: TextStyle(fontWeight: FontWeight.bold,fontSize:30, )),
+              const SizedBox(height: 150,),
+              const Text("Welecome", style: TextStyle(fontWeight: FontWeight.bold,fontSize:50, )),
+              const Text("FCI BLOOD BANK", style: TextStyle(fontWeight: FontWeight.bold,fontSize:30, )),
               Form(
                 key: _ScaffoldKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 100, left: 35, right: 35,),
-                      child: Container(
+                      padding: const EdgeInsets.only(top: 100, left: 35, right: 35,),
+                      child: SizedBox(
                         height: 50,
                         child: TextFormField(
                           keyboardType: TextInputType.phone,
                           controller: phoneController,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
@@ -205,7 +205,7 @@ class _LogingPageState extends State<LogingPage> {
                   Container(
                     color: Colors.green,
                     child: TextButton(
-                      child: Text("Submit"),
+                      child: Text("Submit",style: TextStyle(color: Colors.white),),
                       onPressed: () {
                         FirebaseAuth auth = FirebaseAuth.instance;
 
