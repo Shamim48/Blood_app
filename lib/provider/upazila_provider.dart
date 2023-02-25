@@ -2,7 +2,7 @@ import 'package:blood_app/model/upazila_model.dart';
 import 'package:blood_app/repository/upazila_repo.dart';
 import 'package:flutter/cupertino.dart';
 
-class UpazilaProvider with ChangeNotifier {
+class UpazilaProvider extends ChangeNotifier {
   UpazilaRepo upazilaRepo=UpazilaRepo();
 
   List<UpazilaModel> _upazilaList=[];
