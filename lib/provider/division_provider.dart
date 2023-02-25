@@ -4,6 +4,7 @@ import 'package:blood_app/repository/division_repo.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 
+/*
 class DivisionProvider with ChangeNotifier{
   DivisionRepo divisionRepo=DivisionRepo();
 
@@ -24,10 +25,12 @@ class DivisionProvider with ChangeNotifier{
 
 
 
-  /*getDivisionData() async{
+  */
+/*getDivisionData() async{
     _divisionList= await divisionRepo.getDivision();
     notifyListeners();
-  }*/
+  }*//*
+
 
   setDivision(String division){
     _divisionValue=division;
@@ -81,4 +84,34 @@ class DivisionProvider with ChangeNotifier{
   void getUpazila(String disId){
 
   }
+}*/
+
+
+
+class DivisionProvider extends ChangeNotifier {
+  DivisionRepo divisionRepo=DivisionRepo();
+
+  List<DivisionModel> _divisionList=[];
+  List<DivisionModel>  get divisionList=>_divisionList;
+
+  String _divisionValue="";
+  String get divisionValue=>_divisionValue;
+
+  int _divisionPosition=-1;
+  int get divisionPosition=>_divisionPosition;
+
+  getDivisionList() async {
+    _divisionList= await divisionRepo.divisionData();
+    notifyListeners();
+  }
+
+  setDivision(String division){
+    _divisionValue=division;
+    notifyListeners();
+  }
+  setDivisionPosition(int divisionPosition){
+    _divisionPosition=divisionPosition;
+    notifyListeners();
+  }
+
 }

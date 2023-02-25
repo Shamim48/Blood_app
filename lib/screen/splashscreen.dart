@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:blood_app/main.dart';
+import 'package:blood_app/provider/district_provider.dart';
+import 'package:blood_app/provider/division_provider.dart';
 import 'package:blood_app/screen/botoom_navigation.dart';
 import 'package:blood_app/screen/home_paage.dart';
 import 'package:blood_app/screen/login_screen.dart';
 import 'package:blood_app/utils/styles.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,10 +25,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    rout();
+    route();
   }
 
-  void rout()async{
+  void route()async{
 
     Timer(Duration(seconds: 2), () async{
       if (await FirebaseAuth.instance.currentUser != null) {
@@ -35,6 +38,9 @@ class _SplashScreenState extends State<SplashScreen> {
       }
 
     });
+
+    Provider.of<DivisionProvider>(context,listen: false).getDivisionList();
+
   }
   @override
   Widget build(BuildContext context) {
